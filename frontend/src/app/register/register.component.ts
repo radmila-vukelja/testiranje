@@ -12,10 +12,10 @@ import { Korisnik } from '../model/korisnik';
 })
 export class RegisterComponent implements OnInit {
 
-  korisnickoIme: string;
-  sifra: string;
-  ime: string;
-  prezime: string;
+  userName: string;
+  password: string;
+  name: string;
+  lastName: string;
 
   constructor(
     private loginService: LoginService,
@@ -29,33 +29,33 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  registrujSe() {
-    if (!this.korisnickoIme || this.korisnickoIme === '') {
-      this.openDialog('Morate uneti korisnicko ime', '350px', '300px', false);
-    } else if (!this.sifra || this.sifra === '') {
-      this.openDialog('Morate uneti sifru', '350px', '300px', false);
-    } else if (!this.ime || this.ime === '') {
-      this.openDialog('Morate uneti ime', '350px', '300px', false);
-    } else if (!this.prezime || this.prezime === '') {
-      this.openDialog('Morate uneti prezime', '350px', '300px', false);
+  register() {
+    if (!this.userName || this.userName === '') {
+      this.openDialog('Korisnicko ime je obavezno', '350px', '300px', false);
+    } else if (!this.password || this.password === '') {
+      this.openDialog('Sifra je obavezna', '350px', '300px', false);
+    } else if (!this.name || this.name === '') {
+      this.openDialog('Ime je obavezno', '350px', '300px', false);
+    } else if (!this.lastName || this.lastName === '') {
+      this.openDialog('Prezime je obavezno', '350px', '300px', false);
     } else {
       this.register();
     }
   }
 
-  register() {
+  registration() {
     let korisnik = new Korisnik();
-    korisnik.ime = this.ime;
-    korisnik.korisnickoIme = this.korisnickoIme;
-    korisnik.prezime = this.prezime;
-    korisnik.sifra = this.sifra;
+    korisnik.name = this.name;
+    korisnik.userName = this.userName;
+    korisnik.lastName = this.lastName;
+    korisnik.password = this.password;
 
     this.loginService.register(korisnik).subscribe(
       data => {
-        this.openDialog('Uspesno ste se registrovali! \n Ulogujte se! ', '350px', '300px', true);
+        this.openDialog('Registracija je uspesna! \n Mozete se ulogovati. ', '350px', '300px', true);
       },
       error => {
-        this.openDialog('Postoji greska pri registraciji!', '350px', '300px', false);
+        this.openDialog('Desila se greska prilikom registracije. Pokusajte ponovo.', '350px', '300px', false);
       }
     );
   }

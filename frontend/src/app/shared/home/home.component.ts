@@ -1,13 +1,11 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { LoginService } from 'src/app/service/login.service';
 import { Router } from '@angular/router';
-import { NarudzbinaService } from 'src/app/service/narudzbina.service';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { Narudzbina } from 'src/app/model/narudzbina';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { IzbrisiNarudzbinuComponent } from '../izbrisi-narudzbinu/izbrisi-narudzbinu.component';
+import { Club } from 'src/app/model/club';
+import { Location } from 'src/app/model/location';
 
 @Component({
   selector: 'app-home',
@@ -16,81 +14,41 @@ import { IzbrisiNarudzbinuComponent } from '../izbrisi-narudzbinu/izbrisi-narudz
 })
 export class HomeComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['nazivRestorana', 'datumDostave', 'nazivHrane', 'komentar', 'iznosZaNaplatu', 'moguceIsporuciti', 'edit', 'delete'];
-  dataSource = new MatTableDataSource<Narudzbina>();
-  filterParametar: string;
-  filterJeKliknut = false;
-  oldDataSource;
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  clubs: Club[] = [];
 
   constructor(
     private loginService: LoginService,
     private router: Router,
-    private narudzbinaService: NarudzbinaService,
     public dialog: MatDialog
   ) { }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
   }
 
   ngOnInit(): void {
     if (!this.loginService.isUserLoggedIn()) {
       this.router.navigate(['login']);
     }
-    this.dajNarudzbinePoIdKorisnika();
+    this.fillClubWithMockedData();
+    console.log("Home component is instantiated.")
   }
 
-  dajNarudzbinePoIdKorisnika() {
-    this.narudzbinaService.dajNarudzbinePoIdKorisnika(this.loginService.dajKorisnika().id).subscribe(
-      data => {
-        this.dataSource.data = data;
-        this.oldDataSource = data;
-      },
-      error => {
-        console.log(error)
-      }
-    )
-  }
+  fillClubWithMockedData() {
+    let location = new Location();
+    location.id = 1;
+    location.name = "Jebeni Beograd";
 
-  naruciHranu() {
-    this.router.navigate(['naruci-hranu'])
-  }
-
-  dodajRestoran() {
-    this.router.navigate(['dodaj-restoran'])
-  }
-
-  edit(id: number) {
-    this.router.navigate(['izmeni-narudzbinu/' + id]);
-  }
-
-  delete(id: number) {
-    this.opetDeleteDialog('Da li sigurno zelite da izbrisete narudzbinu?', '350px', '300px', id);
-  }
-
-  filtriraj() {
-    if (!this.filterParametar || this.filterParametar === '' || this.filterParametar === ' ') {
-      return;
-    }
-    this.filterJeKliknut = !this.filterJeKliknut;
-    if (this.filterJeKliknut) {
-      this.dataSource.data = this.filtrirajPoImenu(this.filterParametar);
-    } else {
-      this.dataSource.data = this.oldDataSource;
-    }
-  }
-
-  filtrirajPoImenu(imeRestorana: string) {
-    let data = [];
-    let regex = new RegExp(imeRestorana.toLowerCase());
-    for (let narudzbina of this.oldDataSource) {
-      if (regex.test(narudzbina.nazivRestorana.toLowerCase())) {
-        data.push(narudzbina);
-      }
-    }
-    return data;
+    let club = new Club();
+    club.id = 1;
+    club.name = "Neki Tamo Klub";
+    club.location = location;
+    club.pictureURL = "https://scontent.fath4-2.fna.fbcdn.net/v/t1.6435-9/61803290_2366961270013373_8195401116687532032_n.jpg?_nc_cat=106&ccb=1-3&_nc_sid=973b4a&_nc_ohc=lpfj4qkw9tkAX8YwexN&_nc_ht=scontent.fath4-2.fna&oh=ef0b8b77ecd862ce78c850b7aee39a62&oe=60FEA14C";
+    this.clubs.push(club);
+    // this.clubs.push(club);
+    // this.clubs.push(club);
+    // this.clubs.push(club);
+    // this.clubs.push(club);
+    // this.clubs.push(club);
   }
 
   opetDeleteDialog(text: string, height: string, width: string, id: number) {
@@ -103,15 +61,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('result: ', result);
       if (result === 'izbrisi') {
-        this.narudzbinaService.delete(id).subscribe(
-          data => {
-            this.dataSource.data = data;
-            this.openDialog('Uspesno ste izbrisali narudzbinu', '350px', '300px', true);
-          },
-          error => {
-            this.openDialog('Desila se greska prilikom brisanja narudzbine', '350px', '300px', false);
-          }
-        )
+        // this.narudzbinaService.delete(id).subscribe(
+        //   data => {
+        //     this.openDialog('Uspesno ste izbrisali narudzbinu', '350px', '300px', true);
+        //   },
+        //   error => {
+        //     this.openDialog('Desila se greska prilikom brisanja narudzbine', '350px', '300px', false);
+        //   }
+        // )
       }
 
     });
@@ -127,13 +84,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       this.router.navigate(['home']);
     });
-  }
-
-  stampaj() {
-    localStorage.setItem('stampa', JSON.stringify(this.dataSource.data));
-    setTimeout(() => {
-      this.router.navigate(['stampaj'])
-    }, 1000);
   }
 
 }

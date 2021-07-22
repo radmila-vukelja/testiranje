@@ -1,8 +1,8 @@
 export class Korisnik {
 
     id: string;
-    ime: string;
-    prezime: string;
-    korisnickoIme: string;
-    sifra: string;
+    name: string;
+    lastName: string;
+    userName: string;
+    password: string;
 }

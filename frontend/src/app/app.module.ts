@@ -11,7 +11,6 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
-import { NaruciHranuComponent } from './naruci-hranu/naruci-hranu.component';
 
 /** Dialog component */
 import { DialogComponent } from './shared/dialog/dialog.component';
@@ -31,11 +30,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { DodajRestoranComponent } from './dodaj-restoran/dodaj-restoran.component';
-import { IzmeniNarudzbinuComponent } from './izmeni-narudzbinu/izmeni-narudzbinu.component';
-import { MatSelectModule, MatSelect } from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { IzbrisiNarudzbinuComponent } from './shared/izbrisi-narudzbinu/izbrisi-narudzbinu.component';
-import { StranicaZaStampuComponent } from './stranica-za-stampu/stranica-za-stampu.component';
+import { StranicaZaStampuComponent } from './staro/stranica-za-stampu/stranica-za-stampu.component';
+import { ClubComponent } from './ui-components/club/club.component';
 
 @NgModule({
   declarations: [
@@ -45,11 +43,8 @@ import { StranicaZaStampuComponent } from './stranica-za-stampu/stranica-za-stam
     LoginComponent,
     RegisterComponent,
     DialogComponent,
-    NaruciHranuComponent,
-    DodajRestoranComponent,
-    IzmeniNarudzbinuComponent,
-    IzbrisiNarudzbinuComponent,
-    StranicaZaStampuComponent
+    StranicaZaStampuComponent,
+    ClubComponent
   ],
   imports: [
     BrowserModule,

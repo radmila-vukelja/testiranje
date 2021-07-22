@@ -18,6 +18,9 @@ public class Club {
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
+    private String pictureURL;
+
     @ManyToOne
     private Location location;
 
@@ -27,11 +30,12 @@ public class Club {
     public Club() {
     }
 
-    public Club(Long id, String name, Location location, List<Contestant> contestantList) {
+    public Club(Long id, String name, Location location, String pictureURL, List<Contestant> contestantList) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.contestantList = contestantList;
+        this.pictureURL = pictureURL;
     }
 
     public Long getId() {
@@ -48,6 +52,14 @@ public class Club {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPictureURL() {
+        return pictureURL;
+    }
+
+    public void setPictureURL(String pictureURL) {
+        this.pictureURL = pictureURL;
     }
 
     public Location getLocation() {
