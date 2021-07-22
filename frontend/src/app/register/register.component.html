@@ -1,0 +1,47 @@
+<div class="container">
+
+    <div class="login-form">
+
+        <div class="username-container">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Unesite korisnicko ime</mat-label>
+                <input [(ngModel)]="korisnickoIme" matInput placeholder="username">
+            </mat-form-field>
+
+        </div>
+
+        <div class="name-container">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Unesite ime</mat-label>
+                <input [(ngModel)]="ime" matInput placeholder="Ines">
+            </mat-form-field>
+
+        </div>
+
+        <div class="lastname-container">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Unesite prezime</mat-label>
+                <input [(ngModel)]="prezime" matInput placeholder="email@gmail.com">
+            </mat-form-field>
+
+        </div>
+
+        <div class="password-container">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Unesite sifru</mat-label>
+                <input [(ngModel)]="sifra" matInput placeholder="sifra123">
+            </mat-form-field>
+
+        </div>
+
+        <div class="button-container">
+            <button class="button-primary" (click)="registrujSe()" mat-raised-button color="primary">Registruj se</button>
+        </div>
+
+    </div>
+
+</div>

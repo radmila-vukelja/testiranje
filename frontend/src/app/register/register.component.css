@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 94vh;
+    background-color: #EDEDE7;
+}
+
+.login-form {
+    border: 2px solid gray;
+    border-radius: 12px;
+    width: 400px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.username-container {
+    padding: 15px;
+}
+
+.password-container {
+    padding: 15px;
+}
+
+.name-container {
+    padding: 15px;
+}
+
+.lastname-container {
+    padding: 15px;
+}
+
+.button-container {
+    padding: 15px;
+    width: -webkit-fill-available
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.button-primary {
+    width: -webkit-fill-available;
+    height: 50px;
+}
