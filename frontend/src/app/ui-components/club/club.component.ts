@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Club } from '../../model/club';
 
 @Component({
@@ -9,10 +10,15 @@ import { Club } from '../../model/club';
 export class ClubComponent implements OnInit {
 
   @Input("club") club: Club;
-  constructor() { }
+  constructor(private router: Router) { }
+
 
   ngOnInit(): void {
-    console.log(this.club)
+    console.log(this.club);
+  }
+
+  redirectToClubDetails() {
+    this.router.navigate(['club-full-info/' + this.club.id]);
   }
 
 }

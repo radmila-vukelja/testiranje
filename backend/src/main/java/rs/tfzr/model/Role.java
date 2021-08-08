@@ -3,8 +3,8 @@ package rs.tfzr.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user_role")
-public class UserRole {
+@Table(name = "role")
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

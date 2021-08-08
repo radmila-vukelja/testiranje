@@ -14,8 +14,10 @@ export class RegisterComponent implements OnInit {
 
   userName: string;
   password: string;
+  email: string;
   name: string;
   lastName: string;
+  repeatPassword: string;
 
   constructor(
     private loginService: LoginService,
@@ -49,6 +51,7 @@ export class RegisterComponent implements OnInit {
     korisnik.userName = this.userName;
     korisnik.lastName = this.lastName;
     korisnik.password = this.password;
+    korisnik.email = this.email;
 
     this.loginService.register(korisnik).subscribe(
       data => {

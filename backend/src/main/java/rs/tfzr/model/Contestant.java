@@ -3,8 +3,6 @@ package rs.tfzr.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "contestant")
@@ -31,18 +29,18 @@ public class Contestant {
     private Long jmbg;
 
     @ManyToOne
-    private Category category;
+    private WeightCategory weightCategory;
 
     public Contestant(){}
 
-    public Contestant(Long id, String name, String lastName, Integer age, Location location, Long jmbg, Category category) {
+    public Contestant(Long id, String name, String lastName, Integer age, Location location, Long jmbg, WeightCategory weightCategory) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.age = age;
         this.location = location;
         this.jmbg = jmbg;
-        this.category = category;
+        this.weightCategory = weightCategory;
     }
 
     public Long getId() {
@@ -93,11 +91,11 @@ public class Contestant {
         this.jmbg = jmbg;
     }
 
-    public Category getCategory() {
-        return category;
+    public WeightCategory getWeightCategory() {
+        return weightCategory;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setWeightCategory(WeightCategory weightCategory) {
+        this.weightCategory = weightCategory;
     }
 }

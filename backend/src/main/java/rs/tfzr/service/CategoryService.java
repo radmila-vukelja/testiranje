@@ -2,7 +2,7 @@ package rs.tfzr.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import rs.tfzr.model.Category;
+import rs.tfzr.model.WeightCategory;
 import javax.transaction.Transactional;
 import java.util.List;
 import rs.tfzr.repository.CategoryRepository;
@@ -19,11 +19,11 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public Category getOne(Long id) {
+    public WeightCategory getOne(Long id) {
         return categoryRepository.getOne(id);
     }
 
-    public List<Category> getAll() {
+    public List<WeightCategory> getAll() {
         return categoryRepository.findAll();
     }
 
@@ -31,12 +31,12 @@ public class CategoryService {
         categoryRepository.deleteById(id);
     }
 
-    public Category edit(Category category) {
+    public WeightCategory edit(WeightCategory weightCategory) {
         //do some logic.
-        return categoryRepository.save(category);
+        return categoryRepository.save(weightCategory);
     }
 
-    public Category insert(Category category) {
-        return categoryRepository.save(category);
+    public WeightCategory insert(WeightCategory weightCategory) {
+        return categoryRepository.save(weightCategory);
     }
 }

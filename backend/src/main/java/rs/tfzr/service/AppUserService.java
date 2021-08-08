@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import rs.tfzr.model.AppUser;
-import rs.tfzr.model.UserRole;
+import rs.tfzr.model.Role;
 import rs.tfzr.repository.AppUserRepository;
 
 import javax.transaction.Transactional;
@@ -41,8 +41,8 @@ public class AppUserService {
 
     private Set<GrantedAuthority> getAuthorities(AppUser appUser) {
         Set<GrantedAuthority> authorities = new HashSet<>();
-        for (UserRole userRole : appUser.getRoles()) {
-            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(userRole.getType().toString());
+        for (Role role : appUser.getRoles()) {
+            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getType().toString());
             authorities.add(grantedAuthority);
         }
         return authorities;

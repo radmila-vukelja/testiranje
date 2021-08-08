@@ -19,6 +19,9 @@ public class AppUser {
     private String name;
 
     @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
     private String lastName;
 
     @Column(nullable = false)
@@ -27,7 +30,10 @@ public class AppUser {
     @OneToMany
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<UserRole> roles;
+    private Set<Role> roles;
+
+    public AppUser() {
+    }
 
     public Long getId() {
         return id;
@@ -53,11 +59,11 @@ public class AppUser {
         this.password = sifra;
     }
 
-    public Set<UserRole> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<UserRole> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
@@ -77,4 +83,11 @@ public class AppUser {
         this.lastName = prezime;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

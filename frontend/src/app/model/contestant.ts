@@ -1,5 +1,5 @@
-import { Category } from "./category";
 import { Location } from "./location";
+import { WeightCategory } from "./weight-category";
 
 export class Contestant {
     id: number;
@@ -8,5 +8,5 @@ export class Contestant {
     age: number;
     location: Location;
     jmbg: number;
-    category: Category;
+    weightCategory: WeightCategory;
 }

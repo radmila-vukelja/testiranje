@@ -1,12 +1,12 @@
 <div class="club-container">
+    <img class="club-picture" src="{{club.pictureURL}}">
     <div>
-        <img class="club-picture" src="{{club.pictureURL}}">
-    </div>
-    <div>
-        <label>Name: {{club.name}}</label>
+        <label class="text-center">Naziv kluba: {{club.name}}</label>
     </div>
 
     <div>
-        <label>Location: {{club.location.name}}</label>
+        <label class="text-center">Lokacija kluba: {{club.location.name}}</label>
     </div>
+
+    <button mat-raised-button color="primary" (click)="redirectToClubDetails()">Pogledajte sve clanove kluba</button>
 </div>

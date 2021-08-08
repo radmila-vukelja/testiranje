@@ -2,15 +2,22 @@
     border: 2px solid rgb(136, 113, 219);
     border-radius: 12px;
     width: 550px;
-    height: 600px;
+    height: 600px !important;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+    background-color: rgb(212, 207, 235);
 }
 
-.club-picture{
-    width: 550px;
+.club-picture {
+    width: 548px;
     height: 400px;
     border: 2px solid rgb(136, 113, 219);
     border-radius: 12px;
+}
+
+.text-center {
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }

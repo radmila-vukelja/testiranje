@@ -12,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import rs.tfzr.model.AppUser;
-import rs.tfzr.model.UserRole;
+import rs.tfzr.model.Role;
 import rs.tfzr.repository.AppUserRepository;
 
 import javax.transaction.Transactional;
@@ -45,8 +45,8 @@ public class AppUserSecurityService implements UserDetailsService {
 
     private Set<GrantedAuthority> getAuthorities(AppUser appUser) {
         Set<GrantedAuthority> authorities = new HashSet<>();
-        for (UserRole userRole : appUser.getRoles()) {
-            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(userRole.getType().toString());
+        for (Role role : appUser.getRoles()) {
+            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getType().toString());
             authorities.add(grantedAuthority);
         }
         return authorities;

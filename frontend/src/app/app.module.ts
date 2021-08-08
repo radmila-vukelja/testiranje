@@ -34,6 +34,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { IzbrisiNarudzbinuComponent } from './shared/izbrisi-narudzbinu/izbrisi-narudzbinu.component';
 import { StranicaZaStampuComponent } from './staro/stranica-za-stampu/stranica-za-stampu.component';
 import { ClubComponent } from './ui-components/club/club.component';
+import { ClubPageComponent } from './club-page/club-page.component';
+import { AddContestantComponent } from './add-contestant/add-contestant.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { ClubComponent } from './ui-components/club/club.component';
     RegisterComponent,
     DialogComponent,
     StranicaZaStampuComponent,
-    ClubComponent
+    ClubComponent,
+    ClubPageComponent,
+    AddContestantComponent
   ],
   imports: [
     BrowserModule,

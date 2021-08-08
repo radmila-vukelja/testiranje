@@ -42,13 +42,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
     club.id = 1;
     club.name = "Neki Tamo Klub";
     club.location = location;
-    club.pictureURL = "https://scontent.fath4-2.fna.fbcdn.net/v/t1.6435-9/61803290_2366961270013373_8195401116687532032_n.jpg?_nc_cat=106&ccb=1-3&_nc_sid=973b4a&_nc_ohc=lpfj4qkw9tkAX8YwexN&_nc_ht=scontent.fath4-2.fna&oh=ef0b8b77ecd862ce78c850b7aee39a62&oe=60FEA14C";
+    club.pictureURL = "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdGF1cmFudHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80";
     this.clubs.push(club);
-    // this.clubs.push(club);
-    // this.clubs.push(club);
-    // this.clubs.push(club);
-    // this.clubs.push(club);
-    // this.clubs.push(club);
+    this.clubs.push(club);
+    this.clubs.push(club);
+    this.clubs.push(club);
+    this.clubs.push(club);
+    this.clubs.push(club);
   }
 
   opetDeleteDialog(text: string, height: string, width: string, id: number) {

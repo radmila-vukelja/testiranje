@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import rs.tfzr.model.Category;
+import rs.tfzr.model.WeightCategory;
 import rs.tfzr.service.CategoryService;
 
 @RestController
@@ -34,14 +34,14 @@ public class CategoryController {
 
     @PutMapping
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    public ResponseEntity edit(@RequestBody Category category) {
-        return new ResponseEntity(categoryService.edit(category), HttpStatus.OK);
+    public ResponseEntity edit(@RequestBody WeightCategory weightCategory) {
+        return new ResponseEntity(categoryService.edit(weightCategory), HttpStatus.OK);
     }
 
     @PostMapping
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    public ResponseEntity save(@RequestBody Category category) {
-        return new ResponseEntity(this.categoryService.insert(category), HttpStatus.OK);
+    public ResponseEntity save(@RequestBody WeightCategory weightCategory) {
+        return new ResponseEntity(this.categoryService.insert(weightCategory), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
