@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Club } from '../model/club';
 import { Location } from '../model/location';
 import { LocationService } from '../service/location.service';
+import { ClubService } from '../service/club.service';
 import { LoginService } from '../service/login.service';
 import { DialogComponent } from '../shared/dialog/dialog.component';
 
@@ -22,7 +24,8 @@ export class AddClubComponent implements OnInit {
     private loginService: LoginService,
     private router: Router,
     private locationService: LocationService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private clubService: ClubService
   ) { }
 
   ngOnInit(): void {
@@ -53,9 +56,23 @@ export class AddClubComponent implements OnInit {
     ) {
       return this.openDialog('Morate da popunite sva polja.', '350px', '300px', false);
     } else {
-      
+      let club = new Club();
+      club.location = this.selectedLocation;
+      club.name = this.clubName;
+      club.pictureURL = this.pictureURL;
+      this.saveNewClub(club);
     }
+  }
 
+  saveNewClub(club: Club) {
+    this.clubService.save(club).subscribe(
+      data => {
+        return this.openDialog('Uspesno ste dodali klub', '350px', '300px', false);
+      },
+      error => {
+        return this.openDialog(error.message, '350px', '300px', false);
+      }
+    )
   }
 
   openDialog(text: string, height: string, width: string, action: boolean) {

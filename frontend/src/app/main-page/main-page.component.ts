@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Club } from 'src/app/model/club';
 import { Location } from 'src/app/model/location';
 import { DialogComponent } from '../shared/dialog/dialog.component';
+import { ClubService } from '../service/club.service';
 
 @Component({
   selector: 'app-main-page',
@@ -19,7 +20,8 @@ export class MainPageComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private clubService: ClubService
   ) { }
 
   ngAfterViewInit() {
@@ -29,26 +31,20 @@ export class MainPageComponent implements OnInit {
     if (!this.loginService.isUserLoggedIn()) {
       this.router.navigate(['login']);
     }
-    this.fillClubWithMockedData();
-    console.log("Home component is instantiated.")
+   
+    this.getAllClubs();
+    //console.log("Home component is instantiated.")
   }
 
-  fillClubWithMockedData() {
-    let location = new Location();
-    location.id = 1;
-    location.name = "Jebeni Beograd";
-
-    let club = new Club();
-    club.id = 1;
-    club.name = "Neki Tamo Klub";
-    club.location = location;
-    club.pictureURL = "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdGF1cmFudHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80";
-    this.clubs.push(club);
-    this.clubs.push(club);
-    this.clubs.push(club);
-    this.clubs.push(club);
-    this.clubs.push(club);
-    this.clubs.push(club);
+  getAllClubs(){
+    this.clubService.getAll().subscribe(
+      data =>{
+        this.clubs = data;
+      },
+      error =>{
+        console.error("Error: ", error);
+      }
+    )
   }
 
   opetDeleteDialog(text: string, height: string, width: string, id: number) {

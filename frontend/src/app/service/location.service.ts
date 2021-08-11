@@ -23,12 +23,12 @@ export class LocationService {
     return this.http.get<Location[]>(this.apiUrl + '/all', { headers: this.loginService.getHeaders() })
   }
 
-  edit(narudzbina: Location){
-    return this.http.put<Location>(this.apiUrl, narudzbina, { headers: this.loginService.getHeaders() });
+  edit(location: Location){
+    return this.http.put<Location>(this.apiUrl, location, { headers: this.loginService.getHeaders() });
   }
 
-  save(narudzbina: Location) {
-    return this.http.post<Location>(this.apiUrl, narudzbina, { headers: this.loginService.getHeaders() })
+  save(location: Location) {
+    return this.http.post<Location>(this.apiUrl, location, { headers: this.loginService.getHeaders() })
   }
 
   findByName(name: string){
