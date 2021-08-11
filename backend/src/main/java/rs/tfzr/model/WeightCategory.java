@@ -64,4 +64,14 @@ public class WeightCategory {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    @Override
+    public String toString() {
+        return "WeightCategory{" +
+                "id=" + id +
+                ", weight=" + weight +
+                ", gender='" + gender + '\'' +
+                ", category='" + category + '\'' +
+                '}';
+    }
 }

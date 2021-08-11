@@ -1,1 +1,92 @@
-<p>add-contestant works!</p>
+<div class="container">
+        <div class="login-form">
+            <div class="name-container">
+                <mat-form-field class="full-width">
+                    <mat-label>Unesite ime</mat-label>
+                    <input matInput placeholder="vase-ime" [(ngModel)]="name">
+                </mat-form-field> 
+            </div>
+            <div class="lastname-container">
+                <mat-form-field class="full-width">
+                    <mat-label>Unesite prezime</mat-label>
+                    <input matInput placeholder="vase prezime" [(ngModel)]="lastName">
+                </mat-form-field>
+            </div>
+    
+            <div class="name-container">
+                <mat-form-field class="full-width">
+                    <mat-label>Unesite email</mat-label>
+                    <input matInput placeholder="email@gmail.com" [(ngModel)]="email">
+                </mat-form-field>
+            </div>
+
+            <div class="name-container">
+                <mat-form-field class="full-width">
+                    <mat-label>Unesite jmbg</mat-label>
+                    <input matInput placeholder="1002999256126" [(ngModel)]="jmbg">
+                </mat-form-field>
+            </div>
+            
+            <h4 class="text-center">Izaberite lokaciju</h4>
+            <mat-form-field appearance="fill" class="dropdown-style">
+                <mat-label class="text-center">Izaberite lokaciju</mat-label>
+                <mat-select>
+                    <mat-option class="text-center" *ngFor="let value of locations" [value]="value.name"
+                        (click)="chooseLocation(value)">
+                        {{value.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+        <h4 class="text-center">Izaberite godine</h4>
+        <mat-form-field appearance="fill" class="dropdown-style">
+            <mat-label class="text-center">Izaberite godine</mat-label>
+            <mat-select>
+                <mat-option class="text-center" *ngFor="let value of age" [value]="value"
+                    (click)="chooseAge(value)">
+                    {{value}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <h4 class="text-center">Izaberite pol</h4>
+        <mat-form-field appearance="fill" class="dropdown-style">
+            <mat-label class="text-center">Izaberite pol</mat-label>
+            <mat-select>
+                <mat-option class="text-center" *ngFor="let gender of genders" [value]="gender.value"
+                    (click)="chooseGender(gender.key === 'm' ? 'Male' : 'Female')">
+                    {{gender.key}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <h4 class="text-center">Izaberite Kategoriju</h4>
+        <mat-form-field appearance="fill" class="dropdown-style">
+            <mat-label class="text-center">Izaberite katerogiju</mat-label>
+            <mat-select>
+                <mat-option class="text-center" *ngFor="let category of categories" [value]="category.category"
+                    (click)="chooseCategory(category.category)">
+                    {{category.category}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <h4 class="text-center">Izaberite Tezinsku Kategoriju</h4>
+        <mat-form-field appearance="fill" class="dropdown-style">
+            <mat-label class="text-center">Izaberite tezinu</mat-label>
+            <mat-select>
+                <mat-option class="text-center" *ngFor="let category of weightCategories" [value]="category.weight"
+                    (click)="chooseWeightCategory(category.weight)">
+                    {{category.weight}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="button-container">
+            <button class="button-primary" mat-raised-button color="primary" (click)="addContestant()">
+                Unesite takmicara
+            </button>
+        </div>
+
+    </div>
+</div>

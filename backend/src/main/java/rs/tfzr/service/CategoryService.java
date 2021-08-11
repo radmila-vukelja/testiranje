@@ -3,8 +3,10 @@ package rs.tfzr.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rs.tfzr.model.WeightCategory;
+
 import javax.transaction.Transactional;
 import java.util.List;
+
 import rs.tfzr.repository.CategoryRepository;
 
 
@@ -36,7 +38,20 @@ public class CategoryService {
         return categoryRepository.save(weightCategory);
     }
 
+    public List<String> getDistinctCategories() {
+        return this.categoryRepository.findDistinctCategories();
+    }
+
     public WeightCategory insert(WeightCategory weightCategory) {
         return categoryRepository.save(weightCategory);
     }
+
+    public List<WeightCategory> findAllByGenderAndCategory(String gender, String category) {
+        return this.categoryRepository.findAllByGenderAndCategory(gender, category);
+    }
+
+    public WeightCategory findByGenderAndCategoryAAndWeight(String gender, String category, Double weight) {
+        return this.categoryRepository.findByGenderAndCategoryAndWeight(gender, category, weight);
+    }
+
 }

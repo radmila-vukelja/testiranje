@@ -5,7 +5,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Club } from '../model/club';
 import { Contestant } from '../model/contestant';
 import { Location } from '../model/location';
-import { WeightCategory } from '../model/weight-category';
+import { Category } from '../model/category';
 import { LoginService } from '../service/login.service';
 
 @Component({
@@ -15,7 +15,7 @@ import { LoginService } from '../service/login.service';
 })
 export class ClubPageComponent implements OnInit {
   locat = new Location();
-  cat = new WeightCategory();
+  cat = new Category();
   //Kadet, junior, u21, senior
   MOCKED_TABLE_DATA: Contestant[] = [
     { id: 1, name: 'test-name', lastName: 'lastname', age: 12, location: this.locat, jmbg: 123123123, weightCategory: this.cat },

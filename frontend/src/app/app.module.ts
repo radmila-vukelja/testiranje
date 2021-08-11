@@ -36,6 +36,8 @@ import { StranicaZaStampuComponent } from './staro/stranica-za-stampu/stranica-z
 import { ClubComponent } from './ui-components/club/club.component';
 import { ClubPageComponent } from './club-page/club-page.component';
 import { AddContestantComponent } from './add-contestant/add-contestant.component';
+import { MainPageComponent } from './main-page/main-page.component';
+import { AddClubComponent } from './add-club/add-club.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { AddContestantComponent } from './add-contestant/add-contestant.componen
     StranicaZaStampuComponent,
     ClubComponent,
     ClubPageComponent,
-    AddContestantComponent
+    AddContestantComponent,
+    MainPageComponent,
+    AddClubComponent
   ],
   imports: [
     BrowserModule,

@@ -50,4 +50,10 @@ public class LocationController {
         this.locationService.delete(id);
         return new ResponseEntity(this.locationService.getAll(), HttpStatus.OK);
     }
+
+    @GetMapping("/find-by-name/{name}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity findByName(@PathVariable("name") String name) {
+        return new ResponseEntity(this.locationService.findByName(name), HttpStatus.OK);
+    }
 }

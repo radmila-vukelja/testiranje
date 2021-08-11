@@ -1,0 +1,68 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+}
+
+.login-form {
+    padding: 25px;
+    margin: 15px;
+    border: 2px solid rgb(16, 7, 48);
+    border-radius: 12px;
+    width: 400px;
+    height: 1350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.username-container {
+    padding: 15px;
+}
+
+.password-container {
+    padding: 15px;
+}
+
+.name-container {
+    padding: 15px;
+}
+
+.lastname-container {
+    padding: 15px;
+}
+
+.button-container {
+    padding: 15px;
+    width: -webkit-fill-available
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.full-width {
+    width: 100%;
+    text-align: center;
+}
+
+.button-primary {
+    width: -webkit-fill-available;
+    height: 50px;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.dropdown-style{
+
+}
+
+.dropdown-container{
+    /* display: flex;
+    justify-content: flex-end; */
+}

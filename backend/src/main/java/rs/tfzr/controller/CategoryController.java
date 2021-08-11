@@ -50,4 +50,16 @@ public class CategoryController {
         this.categoryService.delete(id);
         return new ResponseEntity(this.categoryService.getAll(), HttpStatus.OK);
     }
+
+    @GetMapping("/get-categories")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity getDistinctCategories(){
+        return new ResponseEntity(this.categoryService.getDistinctCategories(), HttpStatus.OK);
+    }
+
+    @GetMapping("/get-categories-by-gender/{gender}/{category}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity findAllByGender(@PathVariable("gender") String gender, @PathVariable("category") String category){
+        return new ResponseEntity(this.categoryService.findAllByGenderAndCategory(gender, category), HttpStatus.OK);
+    }
 }

@@ -20,23 +20,27 @@ public class Contestant {
     private String lastName;
 
     @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
     private Integer age;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     private Location location;
 
     @Column(nullable = false)
     private Long jmbg;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     private WeightCategory weightCategory;
 
     public Contestant(){}
 
-    public Contestant(Long id, String name, String lastName, Integer age, Location location, Long jmbg, WeightCategory weightCategory) {
+    public Contestant(Long id, String name, String lastName, String email, Integer age, Location location, Long jmbg, WeightCategory weightCategory) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
+        this.email = email;
         this.age = age;
         this.location = location;
         this.jmbg = jmbg;
@@ -97,5 +101,27 @@ public class Contestant {
 
     public void setWeightCategory(WeightCategory weightCategory) {
         this.weightCategory = weightCategory;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Contestant{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", location=" + location +
+                ", jmbg=" + jmbg +
+                ", weightCategory=" + weightCategory +
+                '}';
     }
 }

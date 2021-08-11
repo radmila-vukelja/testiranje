@@ -39,4 +39,8 @@ public class LocationService {
     public Location insert(Location location) {
         return locationRepository.save(location);
     }
+
+    public Location findByName(String name){
+        return this.locationRepository.findByName(name);
+    }
 }

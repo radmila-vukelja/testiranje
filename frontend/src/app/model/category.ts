@@ -1,4 +1,4 @@
-export class WeightCategory {
+export class Category {
     id: number;
     weight: number;
     gender: string; //male, female

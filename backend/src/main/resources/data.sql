@@ -2,7 +2,8 @@
 INSERT INTO `role`(`id`, `type`) VALUES (1, 'ROLE_ADMIN');
 INSERT INTO `role`(`id`,`type`) VALUES (2, 'ROLE_USER');
 
-INSERT INTO `user`(`id`, `last_name`,`name`, `password`, `user_name`) VALUES (4, 'admin', 'admin', 'admin', 'admin');
+INSERT INTO `user`(`id`, `last_name`,`name`, `password`, `user_name`, `email`) VALUES
+ (4, 'admin', 'admin', 'admin', 'admin', 'admin@admin.com');
 --INSERT INTO `user_roles`(`user_id`,`role_id`)VALUES(3, 1);
 INSERT INTO `user_roles`(`user_id`,`role_id`)VALUES(4, 1);
 
@@ -51,3 +52,15 @@ INSERT INTO `weight_category`(`id`,`weight`,`gender`, `category`) VALUES(10135, 
 INSERT INTO `weight_category`(`id`,`weight`,`gender`, `category`) VALUES(10136, -84, 'Male', 'Senior');
 INSERT INTO `weight_category`(`id`,`weight`,`gender`, `category`) VALUES(10137, 84, 'Male', 'Senior');
 
+
+-- lokacije
+INSERT INTO `location`(`id`,`name`) VALUES(10138, 'Beograd');
+INSERT INTO `location`(`id`,`name`) VALUES(10139, 'Novo Milosevo');
+INSERT INTO `location`(`id`,`name`) VALUES(10140, 'Zrenjanin');
+INSERT INTO `location`(`id`,`name`) VALUES(10141, 'Kovin');
+INSERT INTO `location`(`id`,`name`) VALUES(10142, 'Kragujevac');
+INSERT INTO `location`(`id`,`name`) VALUES(10143, 'Krusevac');
+INSERT INTO `location`(`id`,`name`) VALUES(10144, 'Pancevo');
+INSERT INTO `location`(`id`,`name`) VALUES(10145, 'Smederevo');
+INSERT INTO `location`(`id`,`name`) VALUES(10146, 'Subotica');
+INSERT INTO `location`(`id`,`name`) VALUES(10147, 'Novi Sad');

@@ -1,7 +1,8 @@
-<div class="container">
-    <div class="club-card-container">
-        <ng-container *ngFor="let club of clubs">
-            <app-club class="app-club" [club]="club"></app-club>
-        </ng-container> 
-    </div>
-</div>
+<button class="button-primary" mat-raised-button color="primary" (click)="addContestant()"> Dodaj Takmicara
+</button>
+
+<button class="button-primary" mat-raised-button color="primary" (click)="viewAllClubs()"> Pogledaj sve klubove
+</button>
+
+<button class="button-primary" mat-raised-button color="primary" (click)="addNewClub()"> Dodaj nov klub
+</button>
