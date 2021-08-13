@@ -10,15 +10,18 @@
 
         <div class="full-width">
             <h4 class="text-center full-width">Izaberite lokaciju</h4>
+            <ng-container *ngIf="defaultLocation">
             <mat-form-field appearance="fill" class="full-width dropdown-style">
                 <mat-label class="full-width text-center">Izaberite lokaciju</mat-label>
-                <mat-select  id="testq2">
+                <mat-select [(value)]="defaultLocation.name">
+                    <mat-option></mat-option>
                     <mat-option class="full-width text-center" *ngFor="let value of locations" [value]="value.name"
                         (click)="chooseLocation(value)" >
                         {{value.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
+        </ng-container>
         </div>
 
         <div>

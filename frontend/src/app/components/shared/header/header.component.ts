@@ -47,4 +47,13 @@ export class HeaderComponent implements OnInit {
     this.loginService.redirectHome();
   }
 
+
+  addContestant() {
+    this.loginService.addContestant();
+  }
+  
+  addNewClub() {
+    this.loginService.addNewClub();
+  }
+
 }

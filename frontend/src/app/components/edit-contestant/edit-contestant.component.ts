@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { LoginService } from '../../service/login.service';
 import { CategoryService } from '../../service/category.service';
 import { LocationService } from '../../service/location.service';
@@ -12,11 +12,11 @@ import { DialogComponent } from '../shared/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-add-contestant',
-  templateUrl: './add-contestant.component.html',
-  styleUrls: ['./add-contestant.component.css']
+  selector: 'app-edit-contestant',
+  templateUrl: './edit-contestant.component.html',
+  styleUrls: ['./edit-contestant.component.css']
 })
-export class AddContestantComponent implements OnInit {
+export class EditContestantComponent implements OnInit {
 
   genders: Genders[] = [
     { key: 'm', value: "M" },
@@ -26,16 +26,21 @@ export class AddContestantComponent implements OnInit {
   age = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
 
   genderIsChoosen = false; categoryIsChoosen = false; weightCategoryIsChoosen = false; ageIsChoosen = false;
-  selectedCategory; selectedGender; selectedWeight; weightCategory; selectedAge; selectedLocation;  name; lastName; location; jmbg;
+  selectedCategory; selectedGender; selectedWeight; weightCategory; selectedAge; selectedLocation; name; lastName; location; jmbg;
+  selectedWeightCategory;
+
+  defaultLocation; defaultAge; defaultGender; defaultCategory; defaultWeight;
 
   weightCategories: Category[] = [];
   allCategories: Category[] = [];
   categories: Category[] = [];
   locations: Location[] = [];
+  contestant: Contestant;
 
   constructor(
     private loginService: LoginService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private categoryService: CategoryService,
     private locationService: LocationService,
     private contestantService: ContestantService,
@@ -46,6 +51,51 @@ export class AddContestantComponent implements OnInit {
     this.getAllCategories();
     this.getDisctinctCategories();
     this.getAllLocations();
+    this.catchIdFromUrl();
+  }
+
+  catchIdFromUrl() {
+    this.activatedRoute.params.forEach((params: Params) => {
+      let id = params['id'];
+      this.fetchContestantById(id);
+    });
+  }
+
+  fetchContestantById(id) {
+    this.contestantService.getOne(id).subscribe(
+      data => {
+        this.contestant = data;
+        this.setContestantDefaultData(data);
+      },
+      error => {
+        console.error("ERROR: ", error);
+      }
+    )
+  }
+
+  setContestantDefaultData(contestant: Contestant) {
+    this.genderIsChoosen = true;
+    this.categoryIsChoosen = true;
+    this.weightCategoryIsChoosen = true;
+    this.defaultLocation = contestant.location;
+    this.defaultAge = contestant.age;
+    this.defaultGender = contestant.weightCategory.gender === 'Male' ? { key: 'M' } : { key: 'Z' }
+    this.defaultCategory = contestant.weightCategory;
+    this.selectedCategory = contestant.weightCategory.category;
+    this.selectedGender = contestant.weightCategory.gender;
+    this.selectedLocation = contestant.location;
+    this.selectedWeight = contestant.weightCategory.weight;
+    this.selectedAge = contestant.age;
+    if (this.categoryIsChoosen && this.genderIsChoosen) {
+      this.findAllByGenderAndCategory(this.defaultGender.key === 'M' ? 'Male' : 'Female', this.defaultCategory.category)
+    }
+    this.ageIsChoosen = true;
+    this.name = contestant.name;
+    this.lastName = contestant.lastName;
+    this.location = contestant.location;
+    this.jmbg = contestant.jmbg;
+
+    this.defaultWeight = contestant.weightCategory;
   }
 
   getAllCategories() {
@@ -63,6 +113,7 @@ export class AddContestantComponent implements OnInit {
     this.categoryService.findAllByGenderAndCategory(gender, category).subscribe(
       data => {
         this.weightCategories = data;
+        console.log(data);
       },
       error => {
         console.error("Error: ", error);
@@ -78,7 +129,7 @@ export class AddContestantComponent implements OnInit {
   chooseCategory(value) {
     this.categoryIsChoosen = true;
     this.selectedCategory = value;
-
+    console.log(this.selectedGender);
     if (this.categoryIsChoosen && this.genderIsChoosen) {
       this.findAllByGenderAndCategory(this.selectedGender, this.selectedCategory)
     }
@@ -114,7 +165,13 @@ export class AddContestantComponent implements OnInit {
     )
   }
 
-  addContestant() {
+  editContestant() {
+    console.log(this.selectedCategory);
+    console.log(this.selectedGender);
+    console.log(this.selectedWeight);
+    console.log(this.name);
+    console.log(this.lastName);
+    console.log(this.jmbg);
     if (
       !this.selectedCategory
       || !this.selectedGender
@@ -132,25 +189,25 @@ export class AddContestantComponent implements OnInit {
       return this.openDialog('Jmbg mora biti duzi od 13 karaktera.', '350px', '300px', false);
     }
 
-    let contestant = new Contestant();
-    contestant.name = this.name;
-    contestant.lastName = this.lastName;
-    contestant.age = this.selectedAge;
-    contestant.jmbg = this.jmbg;
-    contestant.location = this.selectedLocation;
-    contestant.isAddedToAClub = false;
+
+    this.contestant.name = this.name;
+    this.contestant.lastName = this.lastName;
+    this.contestant.age = this.selectedAge;
+    this.contestant.jmbg = this.jmbg;
+    this.contestant.location = this.selectedLocation;
+    this.contestant.isAddedToAClub = false;
     let category = new Category();
     category.weight = this.selectedWeight;
     category.gender = this.selectedGender;
     category.category = this.selectedCategory;
-    contestant.weightCategory = category;
-    this.createNewContestant(contestant);
+    this.contestant.weightCategory = category;
+    this.createNewContestant(this.contestant);
   }
 
   createNewContestant(contestant: Contestant) {
     this.contestantService.save(contestant).subscribe(
       data => {
-        this.openDialog('Uspesno ste dodali takmicara', '350px', '300px', false);
+        this.openDialog('Uspesno ste izmenili takmicara', '350px', '300px', false);
       },
       error => {
         console.error("Error: ", error);

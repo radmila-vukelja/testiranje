@@ -14,7 +14,6 @@ export class ClubComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.club);
   }
 
   redirectToClubDetails() {

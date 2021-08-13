@@ -69,14 +69,13 @@ export class ClubPageComponent implements OnInit {
   }
 
   edit(id) {
-
+    this.router.navigate(['edit-contestant/' + id]);
   }
 
   delete(contestant) {
     this.clubService.removeContenstantFromClub(this.clubId, contestant.id).subscribe(
       data => {
         this.openDialog('Uspesno ste uklonili takmicara iz kluba', '350px', '300px', true);
-        console.log(data);
       },
       error => {
         console.error("ERROR: ", error);
@@ -129,7 +128,6 @@ export class ClubPageComponent implements OnInit {
       data => {
         this.categories = data;
         this.categories.push("Ukloni filter");
-        console.log(data);
       },
       error => {
         console.error("Error: ", error);

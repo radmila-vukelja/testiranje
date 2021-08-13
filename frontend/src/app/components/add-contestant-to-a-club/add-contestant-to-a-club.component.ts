@@ -34,7 +34,6 @@ export class AddContestantToAClubComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data);
     this.getAllContestantsWithoutClub();
     this.getClubById(this.data);
   }
@@ -53,7 +52,6 @@ export class AddContestantToAClubComponent implements OnInit {
   getAllContestantsWithoutClub() {
     this.contestantService.getAllContestantsWithoutClub().subscribe(
       data => {
-        console.log(data);
         this.dataSource.data = data;
       },
       error => {
@@ -65,7 +63,6 @@ export class AddContestantToAClubComponent implements OnInit {
   addContestant(contestant) {
     this.clubService.addContestantToAClub(this.club.id, contestant.id).subscribe(
       data => {
-        console.log(data);
         return this.openDialog('Uspesno ste dodali takmicara u ovaj klub.', '350px', '300px', true);
       },
       error => {

@@ -46,7 +46,6 @@ export class AddClubComponent implements OnInit {
 
   chooseLocation(value) {
     this.selectedLocation = value;
-    console.log(value);
   }
 
   addNewClub() {
@@ -101,5 +100,5 @@ export class AddClubComponent implements OnInit {
       return this.openDialog('Morate popuniti sva polja!', '350px', '300px', false);
     }
   }
-  
+
 }

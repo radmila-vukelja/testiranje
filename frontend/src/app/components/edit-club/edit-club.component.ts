@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { DialogComponent } from '../components/shared/dialog/dialog.component';
-import { Club } from '../model/club';
-import { ClubService } from '../service/club.service';
-import { LocationService } from '../service/location.service';
-import { Location } from '../model/location';
+import { DialogComponent } from '../shared/dialog/dialog.component';
+import { Club } from '../../model/club';
+import { ClubService } from '../../service/club.service';
+import { LocationService } from '../../service/location.service';
+import { Location } from '../../model/location';
 
 @Component({
   selector: 'app-edit-club',
@@ -19,6 +19,7 @@ export class EditClubComponent implements OnInit {
   pictureURL;
   clubName;
   locations: Location[] = [];
+  defaultLocation: Location;
   selectedLocation: Location;
 
   constructor(
@@ -45,8 +46,9 @@ export class EditClubComponent implements OnInit {
   fetchClubById(id) {
     this.clubService.getOne(id).subscribe(
       data => {
-        console.log(data);
         this.club = data;
+        this.defaultLocation = data.location;
+        console.log(data.location);
         this.club.doNotShowEditClub = true;
         this.club.doNotShowContestants = true;
         this.clubName = this.club.name;
@@ -72,7 +74,6 @@ export class EditClubComponent implements OnInit {
 
   chooseLocation(value) {
     this.selectedLocation = value;
-    console.log(value);
   }
 
   editClub() {

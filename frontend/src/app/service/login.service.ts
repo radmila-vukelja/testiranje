@@ -29,7 +29,7 @@ export class LoginService {
     } else {
       let credentials = localStorage.getItem('credentials');
       if (credentials && credentials !== null) {
-          const headers = new HttpHeaders({ authorization: 'Basic ' + credentials });
+        const headers = new HttpHeaders({ authorization: 'Basic ' + credentials });
         this.headers = headers
         return this.headers;
       }
@@ -96,8 +96,16 @@ export class LoginService {
     });
   }
 
-  redirectHome(){
+  redirectHome() {
     this.router.navigate(['home'])
   }
+
+  addContestant() {
+    this.router.navigate(['add-contestant'])
+   }
+
+  addNewClub() {
+    this.router.navigate(['add-club'])
+   }
 
 }

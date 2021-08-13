@@ -42,7 +42,8 @@ import { HomeComponent } from './components/shared/home/home.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { EditClubComponent } from './edit-club/edit-club.component';
+import { EditClubComponent } from './components/edit-club/edit-club.component';
+import { EditContestantComponent } from './components/edit-contestant/edit-contestant.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { EditClubComponent } from './edit-club/edit-club.component';
     MainPageComponent,
     AddClubComponent,
     AddContestantToAClubComponent,
-    EditClubComponent
+    EditClubComponent,
+    EditContestantComponent
   ],
   imports: [
     BrowserModule,

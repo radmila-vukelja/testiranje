@@ -33,7 +33,6 @@ export class MainPageComponent implements OnInit {
     }
    
     this.getAllClubs();
-    //console.log("Home component is instantiated.")
   }
 
   getAllClubs(){
@@ -55,7 +54,6 @@ export class MainPageComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('result: ', result);
       if (result === 'izbrisi') {
       }
 
