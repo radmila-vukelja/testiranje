@@ -31,7 +31,7 @@ public class Contestant {
     @ManyToOne(cascade=CascadeType.ALL)
     private WeightCategory weightCategory;
 
-    @Column
+    @Column(nullable = false)
     private Boolean isAddedToAClub;
 
     public Contestant(){}
@@ -121,6 +121,7 @@ public class Contestant {
                 ", location=" + location +
                 ", jmbg=" + jmbg +
                 ", weightCategory=" + weightCategory +
+                ", isAddedToAClub=" + isAddedToAClub +
                 '}';
     }
 }

@@ -47,10 +47,10 @@
                     {{element.jmbg}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="category">
+            <ng-container matColumnDef="weightCategory">
                 <th mat-header-cell *matHeaderCellDef class="text-center"> Kategorija </th>
                 <td mat-cell *matCellDef="let element" class="text-center">
-                    {{element.name}} </td>
+                    {{element.weightCategory.category}} </td>
             </ng-container>
 
             <ng-container matColumnDef="edit">
@@ -63,7 +63,7 @@
             <ng-container matColumnDef="delete">
                 <th mat-header-cell *matHeaderCellDef> Izbrisi </th>
                 <td mat-cell *matCellDef="let element">
-                    <mat-icon (click)="delete(element.id)">delete</mat-icon>
+                    <mat-icon (click)="delete(element)">delete</mat-icon>
                 </td>
             </ng-container>
 
@@ -75,9 +75,8 @@
     </div>
 
     <div class="buttons-container">
-        <button  class="add-ingredient-button" mat-raised-button color="primary"> Dodajte igraca u ovaj klub
-        </button>
-        <button  class="add-ingredient-button" mat-raised-button color="primary">Nesto Drugo</button>
+        <button  class="add-ingredient-button" mat-raised-button color="primary"
+        (click)="openAddContestantDialog()"> Dodajte igraca u ovaj klub </button>
     </div>
 
 </div>

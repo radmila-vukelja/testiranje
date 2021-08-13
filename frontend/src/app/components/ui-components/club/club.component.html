@@ -8,6 +8,11 @@
         <label class="text-center">Lokacija kluba: {{club.location.name}}</label>
     </div>
 
-    <button *ngIf="!club.doNotShowContestants" mat-raised-button color="primary"
-        (click)="redirectToClubDetails()">Pogledajte sve clanove kluba</button>
+    <div class="buttons-container">
+        <button class="buttons-length" *ngIf="!club.doNotShowContestants" mat-raised-button color="primary"
+            (click)="redirectToClubDetails()">Pogledajte sve clanove kluba</button>
+
+        <button class="buttons-length" *ngIf="!club.doNotShowEditClub" mat-raised-button color="primary"
+            (click)="redirectToEditClub()">Izmenite informacije o klubu</button>
+    </div>
 </div>

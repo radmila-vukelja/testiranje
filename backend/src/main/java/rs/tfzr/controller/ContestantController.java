@@ -33,6 +33,12 @@ public class ContestantController {
         return new ResponseEntity(this.contestantService.getAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/all-without-club")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity findContestantsNotAddedToAClub() {
+        return new ResponseEntity(this.contestantService.findContestantsNotAddedToAClub(), HttpStatus.OK);
+    }
+
     @PutMapping
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity edit(@RequestBody Contestant contestant) {

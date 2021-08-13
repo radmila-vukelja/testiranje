@@ -6,6 +6,7 @@ export class Club {
     name: string;
     location: Location;
     pictureURL: string;
-    contenstantList: Contestant[];
+    contestantList: Contestant[];
     doNotShowContestants: boolean;
+    doNotShowEditClub: boolean;
 }

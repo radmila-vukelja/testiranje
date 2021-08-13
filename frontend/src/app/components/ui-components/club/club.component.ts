@@ -21,4 +21,8 @@ export class ClubComponent implements OnInit {
     this.router.navigate(['club-full-info/' + this.club.id]);
   }
 
+  redirectToEditClub() {
+    this.router.navigate(['edit-club/' + this.club.id]);
+  }
+
 }

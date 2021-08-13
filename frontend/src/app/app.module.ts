@@ -4,10 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponent } from './components/shared/home/home.component';
-import { HeaderComponent } from './components/shared/header/header.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
@@ -31,6 +27,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
+import { CdkTreeModule } from '@angular/cdk/tree';
+
+/** Regular components  */
 import { IzbrisiNarudzbinuComponent } from './components/shared/izbrisi-narudzbinu/izbrisi-narudzbinu.component';
 import { StranicaZaStampuComponent } from './components/shared/stranica-za-stampu/stranica-za-stampu.component';
 import { ClubComponent } from './components/ui-components/club/club.component';
@@ -38,6 +37,12 @@ import { ClubPageComponent } from './components/club-page/club-page.component';
 import { AddContestantComponent } from './components/add-contestant/add-contestant.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { AddClubComponent } from './components/add-club/add-club.component';
+import { AddContestantToAClubComponent } from './components/add-contestant-to-a-club/add-contestant-to-a-club.component';
+import { HomeComponent } from './components/shared/home/home.component';
+import { HeaderComponent } from './components/shared/header/header.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { EditClubComponent } from './edit-club/edit-club.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +57,9 @@ import { AddClubComponent } from './components/add-club/add-club.component';
     ClubPageComponent,
     AddContestantComponent,
     MainPageComponent,
-    AddClubComponent
+    AddClubComponent,
+    AddContestantToAClubComponent,
+    EditClubComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +76,8 @@ import { AddClubComponent } from './components/add-club/add-club.component';
     MatNativeDateModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSelectModule
+    MatSelectModule,
+    CdkTreeModule
   ],
   providers: [
     GuardService,

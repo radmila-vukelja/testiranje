@@ -57,14 +57,6 @@ export class MainPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('result: ', result);
       if (result === 'izbrisi') {
-        // this.narudzbinaService.delete(id).subscribe(
-        //   data => {
-        //     this.openDialog('Uspesno ste izbrisali narudzbinu', '350px', '300px', true);
-        //   },
-        //   error => {
-        //     this.openDialog('Desila se greska prilikom brisanja narudzbine', '350px', '300px', false);
-        //   }
-        // )
       }
 
     });

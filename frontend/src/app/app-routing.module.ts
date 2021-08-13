@@ -8,6 +8,7 @@ import { StranicaZaStampuComponent } from './components/shared/stranica-za-stamp
 import { AddContestantComponent } from './components/add-contestant/add-contestant.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { AddClubComponent } from './components/add-club/add-club.component';
+import { EditClubComponent } from './edit-club/edit-club.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,6 +17,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'club-full-info', component: ClubPageComponent },
   { path: 'club-full-info/:id', component: ClubPageComponent },
+  { path: 'edit-club', component: EditClubComponent },
+  { path: 'edit-club/:id', component: EditClubComponent },
   { path: 'add-contestant', component: AddContestantComponent},
   { path: 'main-page', component: MainPageComponent},
   { path: 'add-club', component: AddClubComponent},

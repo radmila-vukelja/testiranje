@@ -21,3 +21,12 @@
     display: flex;
     justify-content: center;
 }
+
+.buttons-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.buttons-length {
+    width: 45%
+}

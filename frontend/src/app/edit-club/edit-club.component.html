@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="left-part">
+
+        <div>
+            <mat-form-field class="full-width">
+                <mat-label>Unesite Naziv Kluba</mat-label>
+                <input matInput placeholder="placeholder1" [(ngModel)]="clubName">
+            </mat-form-field>
+        </div>
+
+        <div class="full-width">
+            <h4 class="text-center full-width">Izaberite lokaciju</h4>
+            <mat-form-field appearance="fill" class="full-width dropdown-style">
+                <mat-label class="full-width text-center">Izaberite lokaciju</mat-label>
+                <mat-select  id="testq2">
+                    <mat-option class="full-width text-center" *ngFor="let value of locations" [value]="value.name"
+                        (click)="chooseLocation(value)" >
+                        {{value.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field class="full-width">
+                <mat-label>Unesite URL slike</mat-label>
+                <input matInput placeholder="placeholder 3" [(ngModel)]="pictureURL">
+            </mat-form-field>
+        </div>
+
+        <button class="button-primary" mat-raised-button color="primary" (click)="editClub()"> Izmenite klub
+        </button>
+
+        <button class="button-primary" mat-raised-button color="primary" (click)="createClubMock()"> Pogledajte kako ce
+            izgledati vas klub </button>
+
+
+    </div>
+
+    <div class="right-part">
+        <ng-container *ngIf="club">
+            <app-club class="app-club" [club]="club"></app-club>
+        </ng-container>
+        <ng-container *ngIf="!club">
+            <div class="right-part-border">
+                <h1 class="text-center"> Primer vaseg kluba </h1>
+            </div>
+        </ng-container>
+    </div>
+</div>

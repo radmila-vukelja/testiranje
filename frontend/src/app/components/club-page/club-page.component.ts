@@ -5,10 +5,12 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Club } from '../../model/club';
 import { Contestant } from '../../model/contestant';
 import { Location } from '../../model/location';
-import { Category } from '../../model/category';
 import { LoginService } from '../../service/login.service';
 import { ClubService } from '../../service/club.service';
 import { CategoryService } from '../../service/category.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddContestantToAClubComponent } from '../add-contestant-to-a-club/add-contestant-to-a-club.component';
+import { DialogComponent } from '../shared/dialog/dialog.component';
 
 @Component({
   selector: 'app-club-page',
@@ -18,24 +20,23 @@ import { CategoryService } from '../../service/category.service';
 export class ClubPageComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  locat = new Location();
-  cat = new Category();
   locations: Location[] = [];
 
-  displayedColumns: string[] = ['id', 'name', 'lastName', 'age', 'location', 'jmbg', 'category', 'edit', 'delete'];
+  displayedColumns: string[] = ['id', 'name', 'lastName', 'age', 'location', 'jmbg', 'weightCategory', 'edit', 'delete'];
   dataSource = new MatTableDataSource<Contestant>();
   filterParametar: string;
   filterJeKliknut = false;
-  oldDataSource;
+  oldDataSource = new MatTableDataSource<Contestant>();
   categories: string[] = [];
   club: Club;
+  clubId;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private loginService: LoginService,
     private clubService: ClubService,
     private categoryService: CategoryService,
+    public dialog: MatDialog,
     private router: Router
   ) { }
 
@@ -50,6 +51,7 @@ export class ClubPageComponent implements OnInit {
   catchIdFromUrl() {
     this.activatedRoute.params.forEach((params: Params) => {
       let id = params['id'];
+      this.clubId = id;
       this.fetchClubById(id);
     });
   }
@@ -57,7 +59,8 @@ export class ClubPageComponent implements OnInit {
   fetchClubById(id: number) {
     this.clubService.getOne(id).subscribe(
       data => {
-        this.dataSource.data = data.contenstantList;
+        this.dataSource.data = data.contestantList;
+        this.oldDataSource.data = data.contestantList;
       },
       error => {
         console.error("Error: ", error);
@@ -69,21 +72,66 @@ export class ClubPageComponent implements OnInit {
 
   }
 
-  delete(id) {
-
+  delete(contestant) {
+    this.clubService.removeContenstantFromClub(this.clubId, contestant.id).subscribe(
+      data => {
+        this.openDialog('Uspesno ste uklonili takmicara iz kluba', '350px', '300px', true);
+        console.log(data);
+      },
+      error => {
+        console.error("ERROR: ", error);
+      }
+    )
   }
 
-  filter() {
-
+  filter(parameter) {
+    if (parameter === 'Ukloni filter') {
+      this.dataSource.data = this.oldDataSource.data;
+    } else {
+      let contestants : Contestant[] = [];
+      for(let contestant of this.oldDataSource.data){
+        if(contestant.weightCategory.category === parameter){
+          contestants.push(contestant);
+        }
+      }
+      this.dataSource.data = contestants;
+    }
   }
 
-  getDistinctCategories(){
+  openDialog(text: string, height: string, width: string, action: boolean) {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: width,
+      height: height,
+      data: text
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (action) {
+        this.router.navigate(['main-page']);
+      }
+    });
+  }
+
+  openAddContestantDialog() {
+    const dialogRef = this.dialog.open(AddContestantToAClubComponent, {
+      width: '1000px',
+      height: '400px',
+      data: this.clubId
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  getDistinctCategories() {
     this.categoryService.getDistinctCategories().subscribe(
       data => {
         this.categories = data;
+        this.categories.push("Ukloni filter");
         console.log(data);
       },
-      error =>{
+      error => {
         console.error("Error: ", error);
       }
     )

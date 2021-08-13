@@ -23,12 +23,20 @@ export class ClubService {
     return this.http.get<Club[]>(this.apiUrl + '/all', { headers: this.loginService.getHeaders() })
   }
 
-  edit(club: Club){
+  edit(club: Club) {
     return this.http.put<Club>(this.apiUrl, club, { headers: this.loginService.getHeaders() });
   }
 
   save(club: Club) {
     return this.http.post<Location>(this.apiUrl, club, { headers: this.loginService.getHeaders() })
+  }
+
+  removeContenstantFromClub(clubId, contestantId) {
+    return this.http.delete<Club[]>(this.apiUrl + '/' + clubId + '/' + contestantId, { headers: this.loginService.getHeaders() });
+  }
+
+  addContestantToAClub(clubId, contestantId) {
+    return this.http.get<Club[]>(this.apiUrl + '/add-contestant/' + clubId + '/' + contestantId, { headers: this.loginService.getHeaders() });
   }
 
 }

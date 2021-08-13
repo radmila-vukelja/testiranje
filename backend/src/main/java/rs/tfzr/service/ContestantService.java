@@ -40,7 +40,8 @@ public class ContestantService {
 
     public Contestant edit(Contestant contestant) {
         //do some logic.
-
+        System.out.println("++++ ");
+        System.out.println(contestant.toString());
         return contenstantRepository.save(contestant);
     }
 
@@ -55,14 +56,17 @@ public class ContestantService {
                 contestant.getWeightCategory().getWeight()
         );
 
-        System.out.println("\n\n\n\n\n\n\n");
-        System.out.println("weightCategory::::");
-        System.out.println( weightCategory.toString());
         contestant.setWeightCategory(
                 weightCategory
         );
 
+        contestant.setAddedToAClub(false);
+
         System.out.println(contestant.toString());
         return contenstantRepository.save(contestant);
+    }
+
+    public List<Contestant> findContestantsNotAddedToAClub(){
+        return this.contenstantRepository.findAllByIsAddedToAClub(false);
     }
 }

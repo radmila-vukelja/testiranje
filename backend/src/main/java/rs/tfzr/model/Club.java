@@ -77,4 +77,15 @@ public class Club {
     public void setContestantList(List<Contestant> contestantList) {
         this.contestantList = contestantList;
     }
+
+    @Override
+    public String toString() {
+        return "Club{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", pictureURL='" + pictureURL + '\'' +
+                ", location=" + location +
+                ", contestantList=" + contestantList +
+                '}';
+    }
 }

@@ -31,4 +31,8 @@ export class ContestantService {
   save(contestant: Contestant) {
     return this.http.post<Contestant>(this.apiUrl, contestant, { headers: this.loginService.getHeaders() })
   }
+
+  getAllContestantsWithoutClub() {
+    return this.http.get<Contestant[]>(this.apiUrl + '/all-without-club', { headers: this.loginService.getHeaders() })
+  }
 }

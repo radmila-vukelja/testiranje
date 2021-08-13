@@ -143,6 +143,7 @@ export class AddContestantComponent implements OnInit {
     contestant.age = this.selectedAge;
     contestant.jmbg = this.jmbg;
     contestant.location = this.selectedLocation;
+    contestant.isAddedToAClub = false;
     let category = new Category();
     category.weight = this.selectedWeight;
     category.gender = this.selectedGender;

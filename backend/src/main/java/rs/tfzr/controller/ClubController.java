@@ -50,4 +50,18 @@ public class ClubController {
         this.clubService.delete(id);
         return new ResponseEntity(this.clubService.getAll(), HttpStatus.OK);
     }
+
+    @DeleteMapping("/{clubId}/{contestantId}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity removeContenstantFromClub(@PathVariable("clubId") Long clubId, @PathVariable("contestantId") Long contestantId) {
+        this.clubService.removeContenstantFromClub(clubId, contestantId);
+        return new ResponseEntity(this.clubService.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/add-contestant/{clubId}/{contestantId}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity addContestantToAClub(@PathVariable("clubId") Long clubId, @PathVariable("contestantId") Long contestantId) {
+        this.clubService.addContestantToAClub(clubId, contestantId);
+        return new ResponseEntity(this.clubService.getAll(), HttpStatus.OK);
+    }
 }
