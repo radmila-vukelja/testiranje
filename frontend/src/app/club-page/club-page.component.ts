@@ -7,6 +7,8 @@ import { Contestant } from '../model/contestant';
 import { Location } from '../model/location';
 import { Category } from '../model/category';
 import { LoginService } from '../service/login.service';
+import { ClubService } from '../service/club.service';
+import { CategoryService } from '../service/category.service';
 
 @Component({
   selector: 'app-club-page',
@@ -14,27 +16,26 @@ import { LoginService } from '../service/login.service';
   styleUrls: ['./club-page.component.css']
 })
 export class ClubPageComponent implements OnInit {
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   locat = new Location();
   cat = new Category();
-  //Kadet, junior, u21, senior
-  MOCKED_TABLE_DATA: Contestant[] = [
-    { id: 1, name: 'test-name', lastName: 'lastname', age: 12, location: this.locat, jmbg: 123123123, weightCategory: this.cat },
-    { id: 2, name: 'test-name-2', lastName: 'lastname-2', age: 12, location: this.locat, jmbg: 123123123, weightCategory: this.cat },
-    { id: 3, name: 'test-name-3', lastName: 'lastname-3', age: 12, location: this.locat, jmbg: 123123123, weightCategory: this.cat },
-  ];
+  locations: Location[] = [];
 
   displayedColumns: string[] = ['id', 'name', 'lastName', 'age', 'location', 'jmbg', 'category', 'edit', 'delete'];
   dataSource = new MatTableDataSource<Contestant>();
   filterParametar: string;
   filterJeKliknut = false;
   oldDataSource;
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
+  categories: string[] = [];
   club: Club;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private loginService: LoginService,
+    private clubService: ClubService,
+    private categoryService: CategoryService,
     private router: Router
   ) { }
 
@@ -43,13 +44,7 @@ export class ClubPageComponent implements OnInit {
       this.router.navigate(['login']);
     }
     this.catchIdFromUrl();
-    this.dataSource.data = this.MOCKED_TABLE_DATA;
-    this.locat.id = 1;
-    this.locat.name = "Novo Jebeno Milosevo"
-    this.cat.id = 2;
-    this.cat.weight = 62;
-    this.cat.gender = "Female";
-    this.cat.category = "Junior";
+    this.getDistinctCategories();
   }
 
   catchIdFromUrl() {
@@ -60,7 +55,14 @@ export class ClubPageComponent implements OnInit {
   }
 
   fetchClubById(id: number) {
-
+    this.clubService.getOne(id).subscribe(
+      data => {
+        this.dataSource.data = data.contenstantList;
+      },
+      error => {
+        console.error("Error: ", error);
+      }
+    )
   }
 
   edit(id) {
@@ -71,8 +73,20 @@ export class ClubPageComponent implements OnInit {
 
   }
 
-  filtriraj() {
+  filter() {
 
+  }
+
+  getDistinctCategories(){
+    this.categoryService.getDistinctCategories().subscribe(
+      data => {
+        this.categories = data;
+        console.log(data);
+      },
+      error =>{
+        console.error("Error: ", error);
+      }
+    )
   }
 
 }

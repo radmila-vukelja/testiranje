@@ -94,7 +94,10 @@ export class LoginService {
 
     dialogRef.afterClosed().subscribe(result => {
     });
+  }
 
+  redirectHome(){
+    this.router.navigate(['home'])
   }
 
 }

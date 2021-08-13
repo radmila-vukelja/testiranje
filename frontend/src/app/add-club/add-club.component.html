@@ -28,18 +28,23 @@
             </mat-form-field>
         </div>
 
-        <button class="button-primary" mat-raised-button color="primary" 
-        (click)="addNewClub()"> Dodaj nov klub </button>
+        <button class="button-primary" mat-raised-button color="primary" (click)="addNewClub()"> Dodaj nov klub
+        </button>
+
+        <button class="button-primary" mat-raised-button color="primary" (click)="createClubMock()"> Pogledajte kako ce
+            izgledati vas klub </button>
 
 
     </div>
 
     <div class="right-part">
-        <ng-container *ngIf="pictureURL">
-            <img class="club-picture" src="{{pictureURL}}" alt="none">
+        <ng-container *ngIf="club">
+            <app-club class="app-club" [club]="club"></app-club>
         </ng-container>
-        <ng-container *ngIf="!pictureURL">
-            <h1 class="text-center"> Primer vase slike </h1>
+        <ng-container *ngIf="!club">
+            <div class="right-part-border">
+                <h1 class="text-center"> Primer vaseg kluba </h1>
+            </div>
         </ng-container>
     </div>
 </div>

@@ -20,9 +20,6 @@ public class Contestant {
     private String lastName;
 
     @Column(nullable = false)
-    private String email;
-
-    @Column(nullable = false)
     private Integer age;
 
     @ManyToOne(cascade=CascadeType.ALL)
@@ -34,17 +31,20 @@ public class Contestant {
     @ManyToOne(cascade=CascadeType.ALL)
     private WeightCategory weightCategory;
 
+    @Column
+    private Boolean isAddedToAClub;
+
     public Contestant(){}
 
-    public Contestant(Long id, String name, String lastName, String email, Integer age, Location location, Long jmbg, WeightCategory weightCategory) {
+    public Contestant(Long id, String name, String lastName, Integer age, Location location, Long jmbg, WeightCategory weightCategory, Boolean isAddedToAClub) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
-        this.email = email;
         this.age = age;
         this.location = location;
         this.jmbg = jmbg;
         this.weightCategory = weightCategory;
+        this.isAddedToAClub = isAddedToAClub;
     }
 
     public Long getId() {
@@ -103,12 +103,12 @@ public class Contestant {
         this.weightCategory = weightCategory;
     }
 
-    public String getEmail() {
-        return email;
+    public Boolean getAddedToAClub() {
+        return isAddedToAClub;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAddedToAClub(Boolean addedToAClub) {
+        isAddedToAClub = addedToAClub;
     }
 
     @Override
@@ -117,7 +117,6 @@ public class Contestant {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
                 ", age=" + age +
                 ", location=" + location +
                 ", jmbg=" + jmbg +

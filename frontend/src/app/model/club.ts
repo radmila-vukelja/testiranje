@@ -7,4 +7,5 @@ export class Club {
     location: Location;
     pictureURL: string;
     contenstantList: Contestant[];
+    doNotShowContestants: boolean;
 }

@@ -9,4 +9,5 @@ export class Contestant {
     location: Location;
     jmbg: number;
     weightCategory: Category;
+    isAddedToAClub: boolean;
 }

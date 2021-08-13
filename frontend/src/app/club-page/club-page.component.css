@@ -29,7 +29,7 @@ mat-icon {
 
 .filter-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: flex-start;
 }
 
@@ -42,7 +42,7 @@ mat-icon {
     justify-content: center;
     align-items: center;
     height: 100px;
-    width: 160px;
+    width: 330px;
 }
 
 .text-center {

@@ -3,4 +3,5 @@ export class Category {
     weight: number;
     gender: string; //male, female
     category: string;
+    doNotShowContestants: boolean;
 }

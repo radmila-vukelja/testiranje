@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../service/login.service';
+import { ValidatorService } from '../service/validator.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../shared/dialog/dialog.component';
@@ -17,22 +18,21 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private validationService: ValidatorService
   ) { }
 
   ngOnInit(): void {
-    if(this.loginService.isUserLoggedIn()){
+    if (this.loginService.isUserLoggedIn()) {
       this.router.navigate(['login']);
     }
   }
 
   login() {
-
-    if (!this.userName || this.userName === '') {
-      this.openDialog('Korisnicko ime je obavezno', '350px', '300px', false);
-    } else if (!this.password || this.password === '') {
-      this.openDialog('Sifra je obavezna', '350px', '300px', false);
-    } else {
+    if (
+      this.validationService.validateUsername(this.userName, 5)
+      && this.validationService.validatePassword(this.password, 5)
+    ) {
       this.logIn();
     }
   }
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  redirectToRegister(){
+  redirectToRegister() {
     this.router.navigate(['register']);
   }
 

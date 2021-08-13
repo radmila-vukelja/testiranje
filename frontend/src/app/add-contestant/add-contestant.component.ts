@@ -26,15 +26,12 @@ export class AddContestantComponent implements OnInit {
   age = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
 
   genderIsChoosen = false; categoryIsChoosen = false; weightCategoryIsChoosen = false; ageIsChoosen = false;
+  selectedCategory; selectedGender; selectedWeight; weightCategory; selectedAge; selectedLocation;  name; lastName; location; jmbg;
 
   weightCategories: Category[] = [];
   allCategories: Category[] = [];
   categories: Category[] = [];
   locations: Location[] = [];
-
-  selectedCategory; selectedGender; selectedWeight; weightCategory; selectedAge; selectedLocation;
-
-  name; lastName; email; location; jmbg;
 
   constructor(
     private loginService: LoginService,
@@ -109,8 +106,6 @@ export class AddContestantComponent implements OnInit {
   getDisctinctCategories() {
     this.categoryService.getDistinctCategories().subscribe(
       data => {
-        console.log("\n\n\n\n\n");
-        console.log(data);
         for (let category of data) {
           let cat = new Category();
           cat.category = category;
@@ -125,22 +120,21 @@ export class AddContestantComponent implements OnInit {
   }
 
   addContestant() {
-    console.log(this.selectedCategory)
-    console.log(this.selectedGender)
-    console.log(this.selectedWeight)
-    console.log(this.name)
-    console.log(this.lastName)
-    console.log(this.email)
-
     if (
       !this.selectedCategory
       || !this.selectedGender
       || !this.selectedWeight
       || !this.name
       || !this.lastName
-      || !this.email
+      || !this.jmbg
     ) {
       return this.openDialog('Morate da popunite sva polja.', '350px', '300px', false);
+    } else if (this.name.length < 6) {
+      return this.openDialog('Ime mora biti duze od 6 karaktera.', '350px', '300px', false);
+    } else if (this.lastName.length < 6) {
+      return this.openDialog('Prezime mora biti duze od 6 karaktera.', '350px', '300px', false);
+    } else if (this.jmbg.length < 13) {
+      return this.openDialog('Jmbg mora biti duzi od 13 karaktera.', '350px', '300px', false);
     }
 
     let contestant = new Contestant();
@@ -193,15 +187,3 @@ export class AddContestantComponent implements OnInit {
   }
 
 }
-
-/**
- export class Contestant {
-    id: number;
-    name: string;
-    lastName: string;
-    age: number;
-    location: Location;
-    jmbg: number;
-    weightCategory: Category;
-}
- */

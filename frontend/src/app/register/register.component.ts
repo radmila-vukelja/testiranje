@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../shared/dialog/dialog.component';
 import { Korisnik } from '../model/korisnik';
+import { ValidatorService } from '../service/validator.service';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private validationService: ValidatorService
   ) { }
 
   ngOnInit(): void {
@@ -32,16 +34,14 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    if (!this.userName || this.userName === '') {
-      this.openDialog('Korisnicko ime je obavezno', '350px', '300px', false);
-    } else if (!this.password || this.password === '') {
-      this.openDialog('Sifra je obavezna', '350px', '300px', false);
-    } else if (!this.name || this.name === '') {
-      this.openDialog('Ime je obavezno', '350px', '300px', false);
-    } else if (!this.lastName || this.lastName === '') {
-      this.openDialog('Prezime je obavezno', '350px', '300px', false);
-    } else {
-      this.register();
+    if (
+      this.validationService.validateUsername(this.userName, 5) &&
+      this.validationService.validateRegularField(this.name, 6, 'Ime') &&
+      this.validationService.validateRegularField(this.lastName, 6, 'Prezime') &&
+      this.validationService.validateEmail(this.email, 6) &&
+      this.validationService.validatePasswordAndRepeatPassword(this.password, this.repeatPassword, 5)
+    ) {
+      this.registration();
     }
   }
 

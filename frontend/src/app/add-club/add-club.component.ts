@@ -19,6 +19,7 @@ export class AddClubComponent implements OnInit {
   clubName;
   locations: Location[] = [];
   selectedLocation: Location;
+  club;
 
   constructor(
     private loginService: LoginService,
@@ -84,5 +85,19 @@ export class AddClubComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
     });
+  }
+
+  createClubMock() {
+    if (
+      this.pictureURL && this.clubName && this.selectedLocation
+    ) {
+      this.club = new Club();
+      this.club.pictureURL = this.pictureURL;
+      this.club.name = this.clubName;
+      this.club.location = this.selectedLocation;
+      this.club.doNotShowContestants = true;
+    }else {
+      return this.openDialog('Morate popuniti sva polja!', '350px', '300px', false);
+    }
   }
 }

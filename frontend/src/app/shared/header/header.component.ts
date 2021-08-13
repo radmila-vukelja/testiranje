@@ -43,8 +43,8 @@ export class HeaderComponent implements OnInit {
     this.loginService.logout();
   }
 
-  redirectToHome(){
-    this.router.navigate['home'];
+  redirectToHome() {
+    this.loginService.redirectHome();
   }
 
 }
