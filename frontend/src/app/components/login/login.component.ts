@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../service/login.service';
-import { ValidatorService } from '../service/validator.service';
+import { LoginService } from '../../service/login.service';
+import { ValidatorService } from '../../service/validator.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../shared/dialog/dialog.component';

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Club } from '../model/club';
-import { Location } from '../model/location';
-import { LocationService } from '../service/location.service';
-import { ClubService } from '../service/club.service';
-import { LoginService } from '../service/login.service';
+import { Club } from '../../model/club';
+import { Location } from '../../model/location';
+import { LocationService } from '../../service/location.service';
+import { ClubService } from '../../service/club.service';
+import { LoginService } from '../../service/login.service';
 import { DialogComponent } from '../shared/dialog/dialog.component';
 
 @Component({

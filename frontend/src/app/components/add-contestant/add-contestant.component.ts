@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../service/login.service';
-import { CategoryService } from '../service/category.service';
-import { LocationService } from '../service/location.service';
-import { ContestantService } from '../service/contestant.service';
-import { Genders } from '../model/genders';
-import { Category } from '../model/category';
-import { Location } from '../model/location';
-import { Contestant } from '../model/contestant';
+import { LoginService } from '../../service/login.service';
+import { CategoryService } from '../../service/category.service';
+import { LocationService } from '../../service/location.service';
+import { ContestantService } from '../../service/contestant.service';
+import { Genders } from '../../model/genders';
+import { Category } from '../../model/category';
+import { Location } from '../../model/location';
+import { Contestant } from '../../model/contestant';
 import { DialogComponent } from '../shared/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 

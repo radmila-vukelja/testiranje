@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../service/login.service';
+import { LoginService } from '../../service/login.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../shared/dialog/dialog.component';
-import { Korisnik } from '../model/korisnik';
-import { ValidatorService } from '../service/validator.service';
+import { Korisnik } from '../../model/korisnik';
+import { ValidatorService } from '../../service/validator.service';
 
 @Component({
   selector: 'app-register',

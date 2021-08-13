@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/service/login.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { Club } from 'src/app/model/club';
-import { Location } from 'src/app/model/location';
+import { Club } from '../../model/club';
+import { Location } from '../../model/location';
 import { DialogComponent } from '../shared/dialog/dialog.component';
-import { ClubService } from '../service/club.service';
+import { ClubService } from '../../service/club.service';
 
 @Component({
   selector: 'app-main-page',

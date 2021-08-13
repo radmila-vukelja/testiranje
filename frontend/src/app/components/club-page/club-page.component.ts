@@ -2,13 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Club } from '../model/club';
-import { Contestant } from '../model/contestant';
-import { Location } from '../model/location';
-import { Category } from '../model/category';
-import { LoginService } from '../service/login.service';
-import { ClubService } from '../service/club.service';
-import { CategoryService } from '../service/category.service';
+import { Club } from '../../model/club';
+import { Contestant } from '../../model/contestant';
+import { Location } from '../../model/location';
+import { Category } from '../../model/category';
+import { LoginService } from '../../service/login.service';
+import { ClubService } from '../../service/club.service';
+import { CategoryService } from '../../service/category.service';
 
 @Component({
   selector: 'app-club-page',

@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './shared/home/home.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { ClubPageComponent } from './club-page/club-page.component';
-import { StranicaZaStampuComponent } from './staro/stranica-za-stampu/stranica-za-stampu.component';
-import { AddContestantComponent } from './add-contestant/add-contestant.component';
-import { MainPageComponent } from './main-page/main-page.component';
-import { AddClubComponent } from './add-club/add-club.component';
+import { HomeComponent } from './components/shared/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ClubPageComponent } from './components/club-page/club-page.component';
+import { StranicaZaStampuComponent } from './components/shared/stranica-za-stampu/stranica-za-stampu.component';
+import { AddContestantComponent } from './components/add-contestant/add-contestant.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
+import { AddClubComponent } from './components/add-club/add-club.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },

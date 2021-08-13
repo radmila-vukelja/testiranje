@@ -3,7 +3,7 @@ import { Korisnik } from '../model/korisnik';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '../shared/dialog/dialog.component';
+import { DialogComponent } from '../components/shared/dialog/dialog.component';
 
 @Injectable({
   providedIn: 'root'
