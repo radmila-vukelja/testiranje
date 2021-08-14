@@ -10,9 +10,12 @@
 
     <div class="buttons-container">
         <button class="buttons-length" *ngIf="!club.doNotShowContestants" mat-raised-button color="primary"
-            (click)="redirectToClubDetails()">Pogledajte sve clanove kluba</button>
+            (click)="redirectToClubDetails()">Pogledajte Sve Clanove Kluba</button>
 
         <button class="buttons-length" *ngIf="!club.doNotShowEditClub" mat-raised-button color="primary"
-            (click)="redirectToEditClub()">Izmenite informacije o klubu</button>
+            (click)="redirectToEditClub()">Izmenite Informacije O Klubu</button>
+
+        <button class="buttons-length" *ngIf="!club.doNotShowDelete" mat-raised-button color="warn"
+            (click)="delete()">Izbrisite Klub</button>
     </div>
 </div>

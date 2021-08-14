@@ -52,17 +52,9 @@
 .button-primary {
     width: -webkit-fill-available;
     height: 50px;
+    margin: 10px;
 }
 
 .text-center{
     text-align: center;
-}
-
-.dropdown-style{
-
-}
-
-.dropdown-container{
-    /* display: flex;
-    justify-content: flex-end; */
 }

@@ -2,9 +2,11 @@ package rs.tfzr.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import rs.tfzr.model.Club;
 import rs.tfzr.model.Contestant;
 import rs.tfzr.model.WeightCategory;
 import rs.tfzr.repository.CategoryRepository;
+import rs.tfzr.repository.ClubRepository;
 import rs.tfzr.repository.ContenstantRepository;
 import rs.tfzr.repository.LocationRepository;
 
@@ -16,14 +18,16 @@ import java.util.List;
 public class ContestantService {
 
     private ContenstantRepository contenstantRepository;
+    private ClubRepository clubRepository;
     private LocationRepository locationRepository;
     private CategoryRepository categoryRepository;
 
     @Autowired
-    public ContestantService(ContenstantRepository contenstantRepository, LocationRepository locationRepository, CategoryRepository categoryRepository) {
+    public ContestantService(ClubRepository clubRepository, ContenstantRepository contenstantRepository, LocationRepository locationRepository, CategoryRepository categoryRepository) {
         this.contenstantRepository = contenstantRepository;
         this.locationRepository = locationRepository;
         this.categoryRepository = categoryRepository;
+        this.clubRepository = clubRepository;
     }
 
     public Contestant getOne(Long id) {
@@ -35,7 +39,24 @@ public class ContestantService {
     }
 
     public void delete(Long id) {
+        Contestant contestant = this.contenstantRepository.getOne(id);
+        contestant.setLocation(null);
+        contestant.setWeightCategory(null);
+        contenstantRepository.save(contestant);
+        Club club = findClubByContestantListIsContaining(contestant);
+        for (int i = 0; i < club.getContestantList().size(); i++) {
+            if (club.getContestantList().get(i).getId() == contestant.getId()) {
+                club.getContestantList().remove(i);
+                break;
+            }
+        }
+        System.out.println(club.toString());
         contenstantRepository.deleteById(id);
+        clubRepository.save(club);
+    }
+
+    public Club findClubByContestantListIsContaining(Contestant contestant) {
+        return this.clubRepository.findClubByContestantListIsContaining(contestant);
     }
 
     public Contestant edit(Contestant contestant) {
@@ -66,7 +87,7 @@ public class ContestantService {
         return contenstantRepository.save(contestant);
     }
 
-    public List<Contestant> findContestantsNotAddedToAClub(){
+    public List<Contestant> findContestantsNotAddedToAClub() {
         return this.contenstantRepository.findAllByIsAddedToAClub(false);
     }
 }

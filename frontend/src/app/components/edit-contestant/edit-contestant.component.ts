@@ -10,6 +10,7 @@ import { Location } from '../../model/location';
 import { Contestant } from '../../model/contestant';
 import { DialogComponent } from '../shared/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../shared/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-edit-contestant',
@@ -113,7 +114,6 @@ export class EditContestantComponent implements OnInit {
     this.categoryService.findAllByGenderAndCategory(gender, category).subscribe(
       data => {
         this.weightCategories = data;
-        console.log(data);
       },
       error => {
         console.error("Error: ", error);
@@ -129,7 +129,6 @@ export class EditContestantComponent implements OnInit {
   chooseCategory(value) {
     this.categoryIsChoosen = true;
     this.selectedCategory = value;
-    console.log(this.selectedGender);
     if (this.categoryIsChoosen && this.genderIsChoosen) {
       this.findAllByGenderAndCategory(this.selectedGender, this.selectedCategory)
     }
@@ -166,12 +165,6 @@ export class EditContestantComponent implements OnInit {
   }
 
   editContestant() {
-    console.log(this.selectedCategory);
-    console.log(this.selectedGender);
-    console.log(this.selectedWeight);
-    console.log(this.name);
-    console.log(this.lastName);
-    console.log(this.jmbg);
     if (
       !this.selectedCategory
       || !this.selectedGender
@@ -207,7 +200,7 @@ export class EditContestantComponent implements OnInit {
   createNewContestant(contestant: Contestant) {
     this.contestantService.save(contestant).subscribe(
       data => {
-        this.openDialog('Uspesno ste izmenili takmicara', '350px', '300px', false);
+        this.openDialog('Uspesno ste izmenili takmicara', '350px', '300px', true);
       },
       error => {
         console.error("Error: ", error);
@@ -235,6 +228,39 @@ export class EditContestantComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if(action){
+        this.router.navigate(['main-page']);
+      }
+    });
+  }
+
+  delete() {
+    this.openDeleteDialog("Da li ste sigurni da zelite da izbrisete takmicara?", '350px', '300px', false);
+  }
+
+  deleteContestant() {
+    this.contestantService.delete(this.contestant.id).subscribe(
+      data => {
+        this.openDialog('Uspesno ste izbrisali takmicara', '350px', '300px', false);
+      },
+      error => {
+        console.error("ERROR: ", error);
+      }
+    )
+  }
+
+  openDeleteDialog(text: string, height: string, width: string, action: boolean) {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      width: width,
+      height: height,
+      data: text
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === "delete") {
+        this.dialog.closeAll();
+        this.deleteContestant();
+      }
     });
   }
 

@@ -36,18 +36,6 @@ export class LoginService {
     }
   }
 
-  dajKorisnika(): Korisnik {
-    if (this.korisnik) {
-      return this.korisnik;
-    } else {
-      let item = localStorage.getItem('korisnik');
-      if (item) {
-        this.korisnik = JSON.parse(item);
-        return this.korisnik;
-      }
-    }
-  }
-
   login(korisnickoIme: string, sifra: string) {
     this.korisnik = new Korisnik();
     const base64Kredencijali = btoa(korisnickoIme + ':' + sifra);
@@ -75,10 +63,6 @@ export class LoginService {
     this.headers = null;
     localStorage.clear();
     this.router.navigate(['/login']);
-  }
-
-  public dajUlogovanogKorisnika() {
-    return this.korisnik;
   }
 
   public isUserLoggedIn() {

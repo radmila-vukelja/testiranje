@@ -57,6 +57,6 @@ public class ContestantController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity delete(@PathVariable("id") Long id) {
         this.contestantService.delete(id);
-        return new ResponseEntity(this.contestantService.getAll(), HttpStatus.OK);
+        return new ResponseEntity(null, HttpStatus.OK);
     }
 }

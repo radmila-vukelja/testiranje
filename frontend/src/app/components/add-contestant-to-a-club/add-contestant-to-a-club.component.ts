@@ -80,8 +80,8 @@ export class AddContestantToAClubComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (action) {
-        dialogRef.close()
-        this.router.navigate(['main-page'])
+        this.dialog.closeAll();
+        this.router.navigate(['main-page']);
       }
     });
   }

@@ -24,7 +24,7 @@ public class Club {
     @ManyToOne
     private Location location;
 
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL)
     private List<Contestant> contestantList;
 
     public Club() {

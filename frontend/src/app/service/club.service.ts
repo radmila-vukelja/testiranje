@@ -31,6 +31,10 @@ export class ClubService {
     return this.http.post<Location>(this.apiUrl, club, { headers: this.loginService.getHeaders() })
   }
 
+  deleteClub(clubId) {
+    return this.http.delete<Club[]>(this.apiUrl + '/' + clubId, { headers: this.loginService.getHeaders() });
+  }
+
   removeContenstantFromClub(clubId, contestantId) {
     return this.http.delete<Club[]>(this.apiUrl + '/' + clubId + '/' + contestantId, { headers: this.loginService.getHeaders() });
   }

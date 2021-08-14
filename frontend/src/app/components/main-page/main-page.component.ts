@@ -3,7 +3,6 @@ import { LoginService } from 'src/app/service/login.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { Club } from '../../model/club';
-import { Location } from '../../model/location';
 import { DialogComponent } from '../shared/dialog/dialog.component';
 import { ClubService } from '../../service/club.service';
 

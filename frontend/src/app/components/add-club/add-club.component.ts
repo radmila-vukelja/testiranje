@@ -67,7 +67,7 @@ export class AddClubComponent implements OnInit {
   saveNewClub(club: Club) {
     this.clubService.save(club).subscribe(
       data => {
-        return this.openDialog('Uspesno ste dodali klub', '350px', '300px', false);
+        return this.openDialog('Uspesno ste dodali klub', '350px', '300px', true);
       },
       error => {
         return this.openDialog(error.message, '350px', '300px', false);
@@ -83,6 +83,10 @@ export class AddClubComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if(action){
+        this.dialog.closeAll();
+        this.router.navigate(['main-page'])
+      }
     });
   }
 
@@ -96,6 +100,7 @@ export class AddClubComponent implements OnInit {
       this.club.location = this.selectedLocation;
       this.club.doNotShowContestants = true;
       this.club.doNotShowEditClub = true;
+      this.club.doNotShowDelete = true;
     }else {
       return this.openDialog('Morate popuniti sva polja!', '350px', '300px', false);
     }

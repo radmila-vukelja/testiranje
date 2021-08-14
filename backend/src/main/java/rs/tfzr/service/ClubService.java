@@ -35,14 +35,19 @@ public class ClubService {
     }
 
     public void delete(Long id) {
+        Club club = clubRepository.getOne(id);
+        for(int i = 0; i < club.getContestantList().size(); i++){
+            club.getContestantList().get(i).setAddedToAClub(false);
+            contenstantRepository.save(club.getContestantList().get(i));
+        }
+        club.setContestantList(null);
+        clubRepository.save(club);
         clubRepository.deleteById(id);
     }
 
     public Club edit(Club club) {
         //do some logic.
-        System.out.println("\n+\n+\n+");
         System.out.println(club.toString());
-        System.out.println("\n+\n+\n+");
         return clubRepository.save(club);
     }
 
@@ -68,6 +73,7 @@ public class ClubService {
     }
 
     public Club insert(Club club) {
+        System.out.println(club.toString());
         return clubRepository.save(club);
     }
 }

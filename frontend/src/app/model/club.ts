@@ -9,4 +9,5 @@ export class Club {
     contestantList: Contestant[];
     doNotShowContestants: boolean;
     doNotShowEditClub: boolean;
+    doNotShowDelete: boolean;
 }

@@ -3,9 +3,9 @@ INSERT INTO `role`(`id`, `type`) VALUES (1, 'ROLE_ADMIN');
 INSERT INTO `role`(`id`,`type`) VALUES (2, 'ROLE_USER');
 
 INSERT INTO `user`(`id`, `last_name`,`name`, `password`, `user_name`, `email`) VALUES
- (4, 'admin', 'admin', 'admin', 'admin', 'admin@admin.com');
+ (3, 'admin', 'admin', 'admin', 'admin', 'admin@admin.com');
 --INSERT INTO `user_roles`(`user_id`,`role_id`)VALUES(3, 1);
-INSERT INTO `user_roles`(`user_id`,`role_id`)VALUES(4, 1);
+INSERT INTO `user_roles`(`user_id`,`role_id`)VALUES(3, 1);
 
 --kadeticategory
 INSERT INTO `weight_category`(`id`,`weight`,`gender`, `category`) VALUES(10101, -47, 'Female', 'Kadet');

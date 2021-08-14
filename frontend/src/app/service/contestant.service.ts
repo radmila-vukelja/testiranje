@@ -35,4 +35,8 @@ export class ContestantService {
   getAllContestantsWithoutClub() {
     return this.http.get<Contestant[]>(this.apiUrl + '/all-without-club', { headers: this.loginService.getHeaders() })
   }
+
+  delete(id) {
+    return this.http.delete<Contestant[]>(this.apiUrl + '/' + id, { headers: this.loginService.getHeaders() })
+  }
 }

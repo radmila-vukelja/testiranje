@@ -48,9 +48,9 @@ export class EditClubComponent implements OnInit {
       data => {
         this.club = data;
         this.defaultLocation = data.location;
-        console.log(data.location);
         this.club.doNotShowEditClub = true;
         this.club.doNotShowContestants = true;
+        this.club.doNotShowDelete = true;
         this.clubName = this.club.name;
         this.pictureURL = this.club.pictureURL;
         this.selectedLocation = this.club.location;
@@ -95,7 +95,7 @@ export class EditClubComponent implements OnInit {
   saveNewClub(club: Club) {
     this.clubService.save(club).subscribe(
       data => {
-        return this.openDialog('Uspesno ste izmenili klub', '350px', '300px', false);
+        return this.openDialog('Uspesno ste izmenili klub', '350px', '300px', true);
       },
       error => {
         return this.openDialog(error.message, '350px', '300px', false);
@@ -111,6 +111,9 @@ export class EditClubComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if(action){
+        this.router.navigate(['main-page']);
+      }
     });
   }
 
@@ -124,6 +127,7 @@ export class EditClubComponent implements OnInit {
       this.club.location = this.selectedLocation;
       this.club.doNotShowContestants = true;
       this.club.doNotShowEditClub = true;
+      this.club.doNotShowDelete = true;
     }else {
       return this.openDialog('Morate popuniti sva polja!', '350px', '300px', false);
     }

@@ -32,7 +32,7 @@ import { CdkTreeModule } from '@angular/cdk/tree';
 /** Regular components  */
 import { IzbrisiNarudzbinuComponent } from './components/shared/izbrisi-narudzbinu/izbrisi-narudzbinu.component';
 import { StranicaZaStampuComponent } from './components/shared/stranica-za-stampu/stranica-za-stampu.component';
-import { ClubComponent } from './components/ui-components/club/club.component';
+import { ClubComponent } from './components/club/club.component';
 import { ClubPageComponent } from './components/club-page/club-page.component';
 import { AddContestantComponent } from './components/add-contestant/add-contestant.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
@@ -44,6 +44,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { EditClubComponent } from './components/edit-club/edit-club.component';
 import { EditContestantComponent } from './components/edit-contestant/edit-contestant.component';
+import { DeleteDialogComponent } from './components/shared/delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { EditContestantComponent } from './components/edit-contestant/edit-conte
     AddClubComponent,
     AddContestantToAClubComponent,
     EditClubComponent,
-    EditContestantComponent
+    EditContestantComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -150,7 +150,7 @@ export class AddContestantComponent implements OnInit {
   createNewContestant(contestant: Contestant) {
     this.contestantService.save(contestant).subscribe(
       data => {
-        this.openDialog('Uspesno ste dodali takmicara', '350px', '300px', false);
+        this.openDialog('Uspesno ste dodali takmicara', '350px', '300px', true);
       },
       error => {
         console.error("Error: ", error);
@@ -178,6 +178,9 @@ export class AddContestantComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if(action){
+        this.router.navigate(['main-page']);
+      }
     });
   }
 
