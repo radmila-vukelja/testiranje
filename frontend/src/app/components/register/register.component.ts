@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
   register() {
     if (
       this.validationService.validateUsername(this.userName, 5) &&
-      this.validationService.validateRegularField(this.name, 6, 'Ime') &&
+      this.validationService.validateRegularField(this.name, 2, 'Ime') &&
       this.validationService.validateRegularField(this.lastName, 6, 'Prezime') &&
       this.validationService.validateEmail(this.email, 6) &&
       this.validationService.validatePasswordAndRepeatPassword(this.password, this.repeatPassword, 5)

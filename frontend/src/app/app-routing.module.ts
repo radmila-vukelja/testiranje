@@ -24,8 +24,7 @@ const routes: Routes = [
   { path: 'edit-contestant/:id', component: EditContestantComponent },
   { path: 'add-contestant', component: AddContestantComponent },
   { path: 'main-page', component: MainPageComponent },
-  { path: 'add-club', component: AddClubComponent },
-  { path: 'stampaj', component: StranicaZaStampuComponent }
+  { path: 'add-club', component: AddClubComponent }
 ];
 
 @NgModule({

@@ -14,14 +14,21 @@
   padding-right: 15px;
 }
 
-.add-contestant{
+.add-contestant {
   padding-left: 50px;
   font-size: small;
-  font-family: cursive;
 }
 
-.add-new-club{
+.add-new-club {
   padding-left: 50px;
   font-size: small;
-  font-family: cursive;
+}
+
+.logo {
+/* 
+
+height: 40px;
+width: 100px;
+
+*/
 }

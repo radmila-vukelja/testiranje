@@ -1,11 +1,13 @@
 <mat-toolbar color="primary" id="navbar">
-   
-    <mat-toolbar-row>
-      <span class="cursor" (click)="redirectToHome()">OVDE IDE LOGO</span>
-      <span class="cursor add-contestant" (click)="addContestant()"> Dodaj Takmicara</span>
-      <span class="cursor add-new-club" (click)="addNewClub()"> Dodaj Novi Klub</span>
-      <span class="example-spacer"></span>
-      <label class="cursor pr" (click)="logIn()"*ngIf="!userIsLoggedIn">Prijava</label>
-      <label class="cursor pr" (click)="logOut()" *ngIf="userIsLoggedIn">Odjava </label>
-    </mat-toolbar-row>
+
+  <mat-toolbar-row>
+    <span class="cursor" (click)="redirectToHome()">
+      Karate Federacija Srbije
+    </span>
+    <span class="cursor add-contestant" (click)="addContestant()"> Dodaj Takmicara</span>
+    <span class="cursor add-new-club" (click)="addNewClub()"> Dodaj Novi Klub</span>
+    <span class="example-spacer"></span>
+    <label class="cursor pr" (click)="logIn()" *ngIf="!userIsLoggedIn">Prijava</label>
+    <label class="cursor pr" (click)="logOut()" *ngIf="userIsLoggedIn">Odjava </label>
+  </mat-toolbar-row>
 </mat-toolbar>

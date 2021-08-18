@@ -48,7 +48,6 @@ public class ContestantController {
     @PostMapping
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity save(@RequestBody Contestant contenstant) {
-        System.out.println("\n\n\n\n\n\n\n\n\n\n");
         System.out.println(contenstant.toString());
         return new ResponseEntity(this.contestantService.insert(contenstant), HttpStatus.OK);
     }

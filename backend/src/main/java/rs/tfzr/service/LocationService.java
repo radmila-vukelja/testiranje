@@ -32,7 +32,6 @@ public class LocationService {
     }
 
     public Location edit(Location location) {
-        //do some logic.
         return locationRepository.save(location);
     }
 

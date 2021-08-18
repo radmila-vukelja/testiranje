@@ -1,0 +1,15 @@
+CREATE TABLE club (id BIGINT NOT NULL, name VARCHAR(255) NOT NULL, pictureurl VARCHAR(255) NOT NULL, location_id BIGINT, PRIMARY KEY (id));
+
+CREATE TABLE club_contestant_list (club_id BIGINT NOT NULL, contestant_list_id BIGINT NOT NULL);
+
+CREATE TABLE contestant (id BIGINT NOT NULL, age INTEGER NOT NULL, is_added_toaclub bit NOT NULL, jmbg BIGINT NOT NULL, last_name VARCHAR(255) NOT NULL, name VARCHAR(255) NOT NULL, location_id BIGINT, weight_category_id BIGINT, PRIMARY KEY (id));
+
+CREATE TABLE location (id BIGINT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY (id));
+
+CREATE TABLE role (id BIGINT NOT NULL, type VARCHAR(255), PRIMARY KEY (id));
+
+CREATE TABLE user (id BIGINT NOT NULL, email VARCHAR(255) NOT NULL, last_name VARCHAR(255) NOT NULL, name VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, user_name VARCHAR(255) NOT NULL, PRIMARY KEY (id));
+
+CREATE TABLE user_roles (user_id BIGINT NOT NULL, role_id BIGINT NOT NULL, PRIMARY KEY (user_id, role_id));
+
+CREATE TABLE weight_category (id BIGINT NOT NULL, category VARCHAR(255) NOT NULL, gender VARCHAR(255) NOT NULL, weight double precision NOT NULL, PRIMARY KEY (id));

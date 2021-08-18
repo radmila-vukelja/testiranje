@@ -60,9 +60,6 @@ public class ContestantService {
     }
 
     public Contestant edit(Contestant contestant) {
-        //do some logic.
-        System.out.println("++++ ");
-        System.out.println(contestant.toString());
         return contenstantRepository.save(contestant);
     }
 

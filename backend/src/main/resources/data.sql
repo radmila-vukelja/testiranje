@@ -1,4 +1,7 @@
 
+ALTER TABLE club MODIFY COLUMN pictureurl VARCHAR(2000);
+
+
 INSERT INTO `role`(`id`, `type`) VALUES (1, 'ROLE_ADMIN');
 INSERT INTO `role`(`id`,`type`) VALUES (2, 'ROLE_USER');
 
@@ -58,9 +61,9 @@ INSERT INTO `location`(`id`,`name`) VALUES(10138, 'Beograd');
 INSERT INTO `location`(`id`,`name`) VALUES(10139, 'Novo Milosevo');
 INSERT INTO `location`(`id`,`name`) VALUES(10140, 'Zrenjanin');
 INSERT INTO `location`(`id`,`name`) VALUES(10141, 'Kovin');
-INSERT INTO `location`(`id`,`name`) VALUES(10142, 'Kragujevac');
-INSERT INTO `location`(`id`,`name`) VALUES(10143, 'Krusevac');
+INSERT INTO `location`(`id`,`name`) VALUES(10142, 'Arandjelovac');
+INSERT INTO `location`(`id`,`name`) VALUES(10143, 'Cacak');
 INSERT INTO `location`(`id`,`name`) VALUES(10144, 'Pancevo');
 INSERT INTO `location`(`id`,`name`) VALUES(10145, 'Smederevo');
-INSERT INTO `location`(`id`,`name`) VALUES(10146, 'Subotica');
+INSERT INTO `location`(`id`,`name`) VALUES(10146, 'Mladenovac');
 INSERT INTO `location`(`id`,`name`) VALUES(10147, 'Novi Sad');

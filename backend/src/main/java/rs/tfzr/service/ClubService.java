@@ -46,7 +46,6 @@ public class ClubService {
     }
 
     public Club edit(Club club) {
-        //do some logic.
         System.out.println(club.toString());
         return clubRepository.save(club);
     }
