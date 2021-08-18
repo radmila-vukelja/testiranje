@@ -14,7 +14,6 @@ import { DialogComponent } from './components/shared/dialog/dialog.component';
 /** Import services */
 import { GuardService } from './service/guard.service';
 import { LoginService } from './service/login.service';
-import { RestoranService } from './service/restoran.service';
 
 /** Angular material imports  */
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -30,8 +29,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { CdkTreeModule } from '@angular/cdk/tree';
 
 /** Regular components  */
-import { IzbrisiNarudzbinuComponent } from './components/shared/izbrisi-narudzbinu/izbrisi-narudzbinu.component';
-import { StranicaZaStampuComponent } from './components/shared/stranica-za-stampu/stranica-za-stampu.component';
 import { ClubComponent } from './components/club/club.component';
 import { ClubPageComponent } from './components/club-page/club-page.component';
 import { AddContestantComponent } from './components/add-contestant/add-contestant.component';
@@ -54,7 +51,6 @@ import { DeleteDialogComponent } from './components/shared/delete-dialog/delete-
     LoginComponent,
     RegisterComponent,
     DialogComponent,
-    StranicaZaStampuComponent,
     ClubComponent,
     ClubPageComponent,
     AddContestantComponent,
@@ -88,9 +84,7 @@ import { DeleteDialogComponent } from './components/shared/delete-dialog/delete-
     LoginService,
     HttpClient,
     DialogComponent,
-    IzbrisiNarudzbinuComponent,
     MatDatepickerModule,
-    RestoranService
   ],
   bootstrap: [AppComponent]
 })

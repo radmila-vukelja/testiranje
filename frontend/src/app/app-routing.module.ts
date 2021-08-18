@@ -4,7 +4,6 @@ import { HomeComponent } from './components/shared/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ClubPageComponent } from './components/club-page/club-page.component';
-import { StranicaZaStampuComponent } from './components/shared/stranica-za-stampu/stranica-za-stampu.component';
 import { AddContestantComponent } from './components/add-contestant/add-contestant.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { AddClubComponent } from './components/add-club/add-club.component';
