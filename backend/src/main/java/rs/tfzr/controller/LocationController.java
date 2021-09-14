@@ -57,4 +57,10 @@ public class LocationController {
         return new ResponseEntity(this.locationService.findByName(name), HttpStatus.OK);
     }
 
+    @DeleteMapping("/delete-by-name/{name}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity deleteByName(@PathVariable("name") String name) {
+        return new ResponseEntity(this.locationService.deleteByName(name), HttpStatus.OK);
+    }
+
 }

@@ -21,7 +21,12 @@ public class LocationService {
     }
 
     public Location getOne(Long id) {
-        return locationRepository.getOne(id);
+        Location location = locationRepository.getOne(id);
+        if (location != null) {
+            return location;
+        } else {
+            return null;
+        }
     }
 
     public List<Location> getAll() {
@@ -41,7 +46,20 @@ public class LocationService {
     }
 
     public Location findByName(String name) {
-        return this.locationRepository.findByName(name);
+        Location location = this.locationRepository.findByName(name);
+        if (location != null) {
+            return location;
+        } else {
+            return null;
+        }
+    }
+
+    public List<Location> deleteByName(String name) {
+        Location location = this.findByName(name);
+        if (location != null) {
+            locationRepository.deleteById(location.getId());
+        }
+        return locationRepository.findAll();
     }
 
 }
