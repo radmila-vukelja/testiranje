@@ -87,4 +87,5 @@ public class ContestantService {
     public List<Contestant> findContestantsNotAddedToAClub() {
         return this.contenstantRepository.findAllByIsAddedToAClub(false);
     }
+
 }

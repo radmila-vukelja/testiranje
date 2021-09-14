@@ -56,4 +56,5 @@ public class LocationController {
     public ResponseEntity findByName(@PathVariable("name") String name) {
         return new ResponseEntity(this.locationService.findByName(name), HttpStatus.OK);
     }
+
 }

@@ -6,6 +6,7 @@ import rs.tfzr.model.Location;
 import rs.tfzr.repository.LocationRepository;
 
 import javax.transaction.Transactional;
+import java.util.Comparator;
 import java.util.List;
 
 @Transactional
@@ -39,7 +40,8 @@ public class LocationService {
         return locationRepository.save(location);
     }
 
-    public Location findByName(String name){
+    public Location findByName(String name) {
         return this.locationRepository.findByName(name);
     }
+
 }

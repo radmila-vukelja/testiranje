@@ -26,53 +26,152 @@ public class ClubService {
         this.contenstantRepository = contenstantRepository;
     }
 
+    public ClubRepository getClubRepository() {
+        return this.clubRepository;
+    }
+
+    public ContenstantRepository getContestantRepository() {
+        return this.contenstantRepository;
+    }
+
     public Club getOne(Long id) {
-        return clubRepository.getOne(id);
+        return getClubRepository().getOne(id);
     }
 
     public List<Club> getAll() {
-        return clubRepository.findAll();
+        return getClubRepository().findAll();
     }
 
     public void delete(Long id) {
-        Club club = clubRepository.getOne(id);
-        for(int i = 0; i < club.getContestantList().size(); i++){
+        Club club = getClubRepository().getOne(id);
+        for (int i = 0; i < club.getContestantList().size(); i++) {
             club.getContestantList().get(i).setAddedToAClub(false);
-            contenstantRepository.save(club.getContestantList().get(i));
+            getContestantRepository().save(club.getContestantList().get(i));
         }
         club.setContestantList(null);
-        clubRepository.save(club);
-        clubRepository.deleteById(id);
+        getClubRepository().save(club);
+        getClubRepository().deleteById(id);
     }
 
     public Club edit(Club club) {
-        System.out.println(club.toString());
-        return clubRepository.save(club);
+        if (validateClubFieldsForEditing(club)) {
+            return getClubRepository().save(club);
+        }
+        return null;
+    }
+
+    public boolean validateClubFieldsForEditing(Club club) {
+        if (club.getId() == null || club.getName() == null || (club.getLocation() == null || club.getLocation().getName() == null) || club.getPictureURL() == null) {
+            return false;
+        }
+        return true;
     }
 
     public void addContestantToAClub(Long clubId, Long contestantId) {
-        Club club = this.clubRepository.getOne(clubId);
-        Contestant contestant = this.contenstantRepository.getOne(contestantId);
+        Club club = this.getClubRepository().getOne(clubId);
+        Contestant contestant = getContestantById(contestantId);
+        if (!validateAge(contestant.getAge())) {
+            return;
+        }
+
+        if (!validateJmbg(contestant.getJmbg())) {
+            return;
+        }
+
+        if (checkIfContestantIsAlreadyAdded(contestant)) {
+            return;
+        }
+
+        if (!validateName(contestant.getName())) {
+            return;
+        }
+
+        if (!validateName(contestant.getLastName())) {
+            return;
+        }
+
         contestant.setAddedToAClub(true);
         club.getContestantList().add(contestant);
-        clubRepository.save(club);
+        getClubRepository().save(club);
     }
 
-    public void removeContenstantFromClub(Long clubId, Long contestantId) {
-        Club club = this.clubRepository.getOne(clubId);
-        for (int i = 0; i < club.getContestantList().size(); i++) {
-            Contestant contestant = club.getContestantList().get(i);
-            contestant.setAddedToAClub(false);
-            if (contestant.getId() == contestantId) {
-                club.getContestantList().remove(i);
-                break;
+    public boolean checkIfContestantIsAlreadyAdded(Contestant contestant) {
+        List<Club> clubList = this.getClubRepository().findAll();
+
+        for (Club club : clubList) {
+            for (Contestant contestantObject : club.getContestantList()) {
+                if (contestantObject.getJmbg() == contestant.getJmbg()) {
+                    return true;
+                }
             }
         }
-        edit(club);
+        return false;
+    }
+
+    public Contestant getContestantById(Long id) {
+        return this.getContestantRepository().getOne(id);
+    }
+
+    public void removeContestantFromClub(Long clubId, Long contestantId) {
+        Club club = this.getClubRepository().getOne(clubId);
+        int index = getContestantIndexFromClub(contestantId, club);
+        if (index != -1) {
+            club.getContestantList().get(index).setAddedToAClub(false);
+            club.getContestantList().remove(index);
+            edit(club);
+        }
+    }
+
+    public int getContestantIndexFromClub(Long contestantId, Club club) {
+        for (int i = 0; i < club.getContestantList().size(); i++) {
+            Contestant contestant = club.getContestantList().get(i);
+            if (contestant.getId().equals(contestantId)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public Club insert(Club club) {
-        System.out.println(club.toString());
-        return clubRepository.save(club);
+        if (checkIfClubExists(club.getName())) {
+            return getClubRepository().save(club);
+        } else
+            return null;
+    }
+
+    public boolean validateJmbg(Long jmbg) {
+        int jmbgLength = String.valueOf(jmbg).length();
+        if (jmbgLength == 13) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean validateName(String name) {
+        char[] chars = name.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        for (char c : chars) {
+            if (Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean checkIfClubExists(String clubName) {
+        List<Club> clubList = getClubRepository().findAll();
+        for (Club club : clubList) {
+            if (club.getName().equals(clubName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean validateAge(int age) {
+        if (age > 55 || age < 5) {
+            return false;
+        }
+        return true;
     }
 }

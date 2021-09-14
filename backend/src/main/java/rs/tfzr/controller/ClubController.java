@@ -54,7 +54,7 @@ public class ClubController {
     @DeleteMapping("/{clubId}/{contestantId}")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity removeContenstantFromClub(@PathVariable("clubId") Long clubId, @PathVariable("contestantId") Long contestantId) {
-        this.clubService.removeContenstantFromClub(clubId, contestantId);
+        this.clubService.removeContestantFromClub(clubId, contestantId);
         return new ResponseEntity(this.clubService.getAll(), HttpStatus.OK);
     }
 

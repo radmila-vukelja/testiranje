@@ -58,4 +58,5 @@ public class ContestantController {
         this.contestantService.delete(id);
         return new ResponseEntity(null, HttpStatus.OK);
     }
+
 }
