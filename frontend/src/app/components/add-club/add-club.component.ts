@@ -30,6 +30,11 @@ export class AddClubComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    alert(this.loginService.isUserLoggedIn())
+    console.log(this.loginService.isUserLoggedIn())
+    if (!this.loginService.isUserLoggedIn()) {
+      this.router.navigate(['login']);
+    }
     this.getAllLocations();
   }
 

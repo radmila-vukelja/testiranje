@@ -4,13 +4,13 @@
         <div>
             <mat-form-field class="full-width">
                 <mat-label>Unesite Naziv Kluba</mat-label>
-                <input matInput placeholder="placeholder1" [(ngModel)]="clubName">
+                <input id="clubname" matInput placeholder="placeholder1" [(ngModel)]="clubName">
             </mat-form-field>
         </div>
 
         <div class="full-width">
             <h4 class="text-center full-width">Izaberite lokaciju</h4>
-            <mat-form-field appearance="fill" class="full-width dropdown-style">
+            <mat-form-field id="location-dropdown" appearance="fill" class="full-width dropdown-style">
                 <mat-label class="full-width text-center">Izaberite lokaciju</mat-label>
                 <mat-select>
                     <mat-option class="full-width text-center" *ngFor="let value of locations" [value]="value.name"
@@ -24,14 +24,14 @@
         <div>
             <mat-form-field class="full-width">
                 <mat-label>Unesite URL slike</mat-label>
-                <input matInput placeholder="placeholder 3" [(ngModel)]="pictureURL">
+                <input id="url-slike" matInput placeholder="placeholder 3" [(ngModel)]="pictureURL">
             </mat-form-field>
         </div>
 
-        <button class="button-primary" mat-raised-button color="primary" (click)="addNewClub()"> Dodaj nov klub
+        <button id='add-new-club-button' class="button-primary" mat-raised-button color="primary" (click)="addNewClub()"> Dodaj nov klub
         </button>
 
-        <button class="button-primary" mat-raised-button color="primary" (click)="createClubMock()"> Pogledajte kako ce
+        <button id='create-mock-club' class="button-primary" mat-raised-button color="primary" (click)="createClubMock()"> Pogledajte kako ce
             izgledati vas klub </button>
 
 

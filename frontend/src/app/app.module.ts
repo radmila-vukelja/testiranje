@@ -35,7 +35,6 @@ import { AddContestantComponent } from './components/add-contestant/add-contesta
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { AddClubComponent } from './components/add-club/add-club.component';
 import { AddContestantToAClubComponent } from './components/add-contestant-to-a-club/add-contestant-to-a-club.component';
-import { HomeComponent } from './components/shared/home/home.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -46,7 +45,6 @@ import { DeleteDialogComponent } from './components/shared/delete-dialog/delete-
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     HeaderComponent,
     LoginComponent,
     RegisterComponent,

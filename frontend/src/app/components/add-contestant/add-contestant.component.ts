@@ -43,6 +43,9 @@ export class AddContestantComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (!this.loginService.isUserLoggedIn()) {
+      this.router.navigate(['login']);
+    }
     this.getAllCategories();
     this.getDisctinctCategories();
     this.getAllLocations();
